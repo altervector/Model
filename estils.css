@@ -67,6 +67,7 @@ a:hover {
 
 .navbar.scrolled {
     background-color: var(--color-principal);
+        padding: 15px calc((100% - var(--amplada-max)) / 2 + 20px);
 }
 
 .navbar-logo {
