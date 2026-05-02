@@ -92,5 +92,11 @@
             </footer>
         `;
     }
-
+            /* ─── 5. NAVBAR TRANSPARENT ────────────────────────────── */
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('.navbar');
+                if (nav) {
+                    nav.classList.toggle('scrolled', window.scrollY > 50);
+                }
+            });
 })();

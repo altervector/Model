@@ -16,7 +16,7 @@
     --font-titol:       'Georgia', serif;
     --font-cos:         'Segoe UI', Roboto, sans-serif;
 
-    --amplada-max:      480px;
+    --amplada-max:      860px;
     --radi:             10px;
     --ombra:            0 4px 20px rgba(0,0,0,0.1);
 }
@@ -52,14 +52,21 @@ a:hover {
 
 /* ─── 3. NAVBAR ───────────────────────────────────────────── */
 .navbar {
-    background-color: var(--color-principal);
+    background-color: transparent;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: var(--color-principal);
 }
 
 .navbar-logo {
