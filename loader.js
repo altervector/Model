@@ -37,8 +37,13 @@
     });
 
     // 4. QUITAR VELO
+// 4. QUITAR VELO
+if (document.readyState === 'complete') {
+    document.body.style.opacity = "1";
+} else {
     window.addEventListener('load', () => {
         document.body.style.opacity = "1";
     });
+}
 
 })();
