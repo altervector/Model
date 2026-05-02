@@ -53,7 +53,7 @@ a:hover {
 /* ─── 3. NAVBAR ───────────────────────────────────────────── */
 .navbar {
     background-color: transparent;
-    padding: 15px 20px;
+    padding: 15px calc((100% - var(--amplada-max)) / 2 + 20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -104,6 +104,7 @@ a:hover {
 /* ─── 4. HERO ─────────────────────────────────────────────── */
 .hero {
     position: relative;
+     margin-top: -70px;
     width: 100%;
     height: 60vh;
     min-height: 300px;
