@@ -91,7 +91,7 @@
                         <a href="${CONFIG.FACEBOOK}" target="_blank">Facebook</a>
                     </p>
                     <p class="footer-poweredby">
-                        Powered by <a href="www.altervector.com" target="_blank">AlterVector</a>
+                        Powered by <a href="Https://www.altervector.com" target="_blank">AlterVector</a>
                     </p>
                 </footer>
             `;
