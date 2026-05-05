@@ -16,7 +16,7 @@
     --font-titol:       'Georgia', serif;
     --font-cos:         'Segoe UI', Roboto, sans-serif;
 
-    --amplada-max:      860px;
+    --amplada-max:      100%;
     --radi:             10px;
     --ombra:            0 4px 20px rgba(0,0,0,0.1);
 }
