@@ -74,7 +74,7 @@ a:hover {
 }
 
 .navbar.scrolled {
-    background-color: rgba(44, 62, 53, 0.85);
+    background-color: rgba(44, 62, 53, 0.65);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 15px calc((100% - var(--amplada-max)) / 2 + 20px);
@@ -190,7 +190,7 @@ a:hover {
 }
 
 .seccio-alt {
-    background-color: var(--color-fons-alt);
+    background-color: transparent;
 }
 
 .seccio-titol {
@@ -218,7 +218,9 @@ a:hover {
 
 /* ─── 7. FOOTER ───────────────────────────────────────────── */
 .footer {
-    background-color: var(--color-principal);
+    background-color: rgba(44, 62, 53, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: rgba(255,255,255,0.75);
     padding: 40px 20px;
     text-align: center;
