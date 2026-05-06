@@ -28,12 +28,17 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: var(--font-cos);
+html {
     background-image: url("images/background.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
+    min-height: 100%;
+}
+
+body {
+    font-family: var(--font-cos);
+    background-color: transparent;
     color: var(--color-text);
     max-width: var(--amplada-max);
     margin: 0 auto;
