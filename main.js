@@ -57,8 +57,8 @@
 
                 <section class="seccio seccio-alt" id="horaris">
                     <h2 class="seccio-titol">Horaris</h2>
-                    <p class="seccio-text">Dilluns a divendres: 13:00 – 15:30h</p>
-                    <p class="seccio-text">Divendres i dissabte nit: 20:45 – 23:30h</p>
+                    <p class="seccio-text">Dilluns a divendres: 13:00 - 15:30h</p>
+                    <p class="seccio-text">Divendres i dissabte nit: 20:45 - 23:30h</p>
                     <p class="seccio-text">Diumenge: Tancat</p>
                 </section>
 

@@ -10,7 +10,7 @@ const CONFIG = {
     LOGO:           "Icon/logo.png",
     SLOGAN:         "El teu eslògan aquí",
     TELEFON:        "+34 000 000 000",
-    EMAIL:          "contacte@negoci.com",
+    EMAIL:          "contacte@altervector.com",
     ADRECA:         "Carrer, número, població",
     INSTAGRAM:      "https://www.instagram.com/",
     FACEBOOK:       "https://www.facebook.com/",
