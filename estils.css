@@ -30,7 +30,8 @@
 
 body {
     font-family: var(--font-cos);
-    background-color: var(--color-fons);
+    background-color: #2a2a2a;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%232a2a2a'/%3E%3Crect width='1' height='1' fill='%23333333'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23333333'/%3E%3C/svg%3E");
     color: var(--color-text);
     max-width: var(--amplada-max);
     margin: 0 auto;
@@ -66,8 +67,10 @@ a:hover {
 }
 
 .navbar.scrolled {
-    background-color: var(--color-principal);
-        padding: 15px calc((100% - var(--amplada-max)) / 2 + 20px);
+    background-color: rgba(44, 62, 53, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 15px calc((100% - var(--amplada-max)) / 2 + 20px);
 }
 
 .navbar-logo {
