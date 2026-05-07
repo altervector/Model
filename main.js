@@ -14,7 +14,7 @@
             navbar.innerHTML = `
                 <nav class="navbar">
                     <div class="navbar-logo">
-                        <img src="${CONFIG.BASE_URL}Icon/logo.png" alt="${CONFIG.NOM}">
+                        <img src="${CONFIG.BASE_URL}${CONFIG.LOGO}" alt="${CONFIG.NOM}">
                     </div>
                     <ul class="navbar-menu">
                         <li><a href="#menus">Menús</a></li>
