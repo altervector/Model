@@ -101,7 +101,7 @@ a:hover {
 
 .navbar-menu a {
     color: var(--color-blanc);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
