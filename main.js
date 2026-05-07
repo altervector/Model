@@ -17,7 +17,9 @@
                         <img src="${CONFIG.BASE_URL}Icon/logo.png" alt="${CONFIG.NOM}">
                     </div>
                     <ul class="navbar-menu">
+                        <li><a href="#seccions">Menús</a></li>
                         <li><a href="#seccions">Carta</a></li>
+                        <li><a href="#seccions">Vins i Caves</a></li>
                         <li><a href="#footer">Contacte</a></li>
                     </ul>
                 </nav>
@@ -65,14 +67,13 @@
                 <hr class="separador">
 
                 <section class="seccio" id="contacte">
-                    <h2 class="seccio-titol">Contacte</h2>
+                    <h2 class="seccio-titol">Fes la teva Reserva</h2>
                     <p class="seccio-text">
                         <a href="tel:${CONFIG.TELEFON}">📞 ${CONFIG.TELEFON}</a>
                     </p>
                     <p class="seccio-text">
                         <a href="mailto:${CONFIG.EMAIL}">✉️ ${CONFIG.EMAIL}</a>
                     </p>
-                    <p class="seccio-text">${CONFIG.ADRECA}</p>
                 </section>
             `;
         }
@@ -85,6 +86,7 @@
                     <p class="footer-nom">${CONFIG.NOM}</p>
                     <p>${CONFIG.ADRECA}</p>
                     <p><a href="tel:${CONFIG.TELEFON}">${CONFIG.TELEFON}</a></p>
+                    <a href="mailto:${CONFIG.EMAIL}">✉️ ${CONFIG.EMAIL}</a>
                     <p>
                         <a href="${CONFIG.INSTAGRAM}" target="_blank">Instagram</a>
                         &nbsp;·&nbsp;
