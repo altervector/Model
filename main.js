@@ -56,7 +56,7 @@
                             <div class="menu-bloc-imatge">
                                 <img src="${CONFIG.BASE_URL}images/menu-diari.jpg"
                                     alt="Menú Diari"
-                                    onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
+                                    onerror="this.src='${CONFIG.BASE_URL}images/dirai.jpg'">
                             </div>
                             <div class="menu-bloc-text">
                                 <h3>Menú Diari</h3>
@@ -67,7 +67,7 @@
 
                         <div class="menu-bloc">
                             <div class="menu-bloc-imatge">
-                                <img src="${CONFIG.BASE_URL}images/menu-cap-setmana.jpg"
+                                <img src="${CONFIG.BASE_URL}images/finde.jpg"
                                     alt="Menú Cap de Setmana"
                                     onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
                             </div>
@@ -80,7 +80,7 @@
 
                         <div class="menu-bloc">
                             <div class="menu-bloc-imatge">
-                                <img src="${CONFIG.BASE_URL}images/menu-grups.jpg"
+                                <img src="${CONFIG.BASE_URL}images/grups.jpg"
                                     alt="Menú Grups"
                                     onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
                             </div>
