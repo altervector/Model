@@ -54,9 +54,9 @@
 
                         <div class="menu-bloc">
                             <div class="menu-bloc-imatge">
-                                <img src="${CONFIG.BASE_URL}images/menu-diari.jpg"
+                                <img src="${CONFIG.BASE_URL}images/diari.jpg"
                                     alt="Menú Diari"
-                                    onerror="this.src='${CONFIG.BASE_URL}images/dirai.jpg'">
+                                    onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
                             </div>
                             <div class="menu-bloc-text">
                                 <h3>Menú Diari</h3>
