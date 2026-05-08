@@ -37,7 +37,7 @@
                     <div class="hero-contingut">
                         <h1 class="hero-titol">${CONFIG.NOM}</h1>
                         <p class="hero-slogan">${CONFIG.SLOGAN}</p>
-                        <a href="#menus" class="hero-boto">Descobreix-nos</a>
+                        <a href="#qui-som" class="hero-boto">Descobreix-nos</a>
                     </div>
                 </section>
             `;
