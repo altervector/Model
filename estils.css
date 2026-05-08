@@ -187,6 +187,7 @@ a:hover {
 /* ─── 5. SECCIONS ─────────────────────────────────────────── */
 .seccio {
     padding: 40px 60px;
+   scroll-margin-top: 70px;
 }
 
 .seccio-alt {
