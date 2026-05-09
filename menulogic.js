@@ -53,7 +53,7 @@
             }
         });
 
-        const ordreSeccions = ['Entrant', 'Primer', 'Segon', 'Postres'];
+        const ordreSeccions = ['Entrants', 'Primer', 'Segon', 'Postres'];
         const seccionsOrdenades = ordreSeccions.filter(s => grups[s]);
 
         let html = `
@@ -135,7 +135,7 @@
             }
         });
 
-        const ordreSeccions = ['Entrant', 'Primer', 'Segon', 'Postres', 'Vins'];
+        const ordreSeccions = ['Entrants', 'Primer', 'Segon', 'Postres', 'Vins'];
         const seccionsOrdenades = ordreSeccions.filter(s => grups[s]);
 
         let html = `
