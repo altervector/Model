@@ -77,7 +77,7 @@
                     <h3 style="font-size:0.75rem; letter-spacing:3px; 
                         text-transform:uppercase; color:#c8973a; 
                         border-bottom:1px solid #ddd3be; padding-bottom:6px; 
-                        margin-bottom:12px; font-family:sans-serif; font-weight:normal;">
+                        margin-bottom:12px; font-family:sans-serif; font-weight:normal;text-align:center;">
                         ${seccio}
                     </h3>
             `;
