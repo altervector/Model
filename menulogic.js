@@ -85,7 +85,7 @@
             grups[seccio].forEach(plat => {
                 html += `
                     <p style="margin:0 0 8px 0; font-size:0.95rem; color:#2a2a2a; 
-                        line-height:1.4;">
+                        line-height:1.4; text-align:center;">
                         ${plat.Nom || ''}
                     </p>
                 `;
