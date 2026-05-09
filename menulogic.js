@@ -8,22 +8,21 @@
     // ─── ESTRUCTURA DEL MODAL ────────────────────────────────
     if (!document.getElementById('modal-menu')) {
         document.body.insertAdjacentHTML('beforeend', `
-            <div id="modal-menu" style="display:none; position:fixed; top:0; left:0; 
-                width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:9999;
-                align-items:center; justify-content:center; padding:20px;">
-                <div id="modal-menu-paper" style="
-                    background: #f5f0e8;
-                    width: 100%;
-                    max-width: 550px;
-                    max-height: 90vh;
-                    overflow-y: auto;
-                    border-radius: 0;
-                    padding: 50px 45px;
-                    box-shadow: 0 10px 40px rgba(0,0,0,0.4), 
-                                4px 4px 0px rgba(0,0,0,0.05),
-                                -2px 0px 8px rgba(0,0,0,0.08);
-                    font-family: Georgia, serif;
-                    position: relative;">
+<div id="modal-menu" style="display:none; position:fixed; top:0; left:0; 
+    width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:9999;
+    align-items:flex-start; justify-content:center; padding:40px 20px;
+    overflow-y:auto;">
+    <div id="modal-menu-paper" style="
+        background: #f5f0e8;
+        width: 100%;
+        max-width: 550px;
+        border-radius: 0;
+        padding: 50px 45px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4), 
+                    4px 4px 0px rgba(0,0,0,0.05),
+                    -2px 0px 8px rgba(0,0,0,0.08);
+        font-family: Georgia, serif;
+        position: relative;">
                     <button onclick="tancarModalMenu()" style="position:absolute; 
                         top:12px; right:16px; background:none; border:none; 
                         font-size:20px; cursor:pointer; color:#aaa; 
