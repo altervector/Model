@@ -127,7 +127,7 @@
             grups[seccio].push(r.fields);
         });
 
-        const ordreSeccions = ['Entrant', 'Primer', 'Segon', 'Postres'];
+        const ordreSeccions = ['Entrant', 'Primer', 'Segon', 'Postres', 'Vins'];
         const seccionsOrdenades = ordreSeccions.filter(s => grups[s]);
 
         let html = `
