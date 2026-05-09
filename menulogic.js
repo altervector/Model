@@ -38,7 +38,7 @@
         document.getElementById('modal-menu').style.display = 'none';
     };
 
-    // ─── PINTAR MENÚ (Primer/Segon/Postre + Peu) ─────────────
+    // ─── PINTAR MENÚ (Primer/Segon/Postre + Peu) ───────────────────────────────────────────────────────────────────────────────────────────
     const pintarMenu = function(registres, titol) {
         const grups = {};
         const peus = [];
@@ -120,7 +120,7 @@
         return html;
     };
 
-    // ─── PINTAR CARTA (Nom + Preu per plat + Peu) ────────────
+    // ─── PINTAR CARTA (Nom + Preu per plat + Peu) ──────────────────────────────────────────────────────────────────────────────────────────
     const pintarCarta = function(registres, titol) {
         const grups = {};
         const peus = [];
