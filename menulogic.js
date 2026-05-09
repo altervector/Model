@@ -45,7 +45,7 @@
         let peu = null;
 
         registres.forEach(r => {
-            const seccio = r.fields.Seccio || 'Altres';
+            const seccio = Array.isArray(r.fields.Seccio) ? r.fields.Seccio[0] : (r.fields.Seccio || 'Altres');
             if (seccio === 'Peu') {
                 peu = r.fields;
             } else {
@@ -122,7 +122,7 @@
         const grups = {};
 
         registres.forEach(r => {
-            const seccio = r.fields.Seccio || 'Altres';
+            const seccio = Array.isArray(r.fields.Seccio) ? r.fields.Seccio[0] : (r.fields.Seccio || 'Altres');
             if (!grups[seccio]) grups[seccio] = [];
             grups[seccio].push(r.fields);
         });
