@@ -76,7 +76,7 @@
                     <h3 style="font-size:0.75rem; letter-spacing:3px; 
                         text-transform:uppercase; color:#c8973a; 
                         border-bottom:1px solid #ddd3be; padding-bottom:6px; 
-                        margin-bottom:12px; font-family:sans-serif; font-weight:normal;text-align:center;">
+                        margin-bottom:12px; font-family:sans-serif; font-weight:normal; text-align:center;">
                         ${seccio}
                     </h3>
             `;
@@ -116,17 +116,22 @@
         return html;
     };
 
-    // ─── PINTAR CARTA (Nom + Preu per plat) ──────────────────
+    // ─── PINTAR CARTA (Nom + Preu per plat + Peu) ────────────
     const pintarCarta = function(registres, titol) {
         const grups = {};
+        let peu = null;
 
         registres.forEach(r => {
             const seccio = Array.isArray(r.fields.Seccio) ? r.fields.Seccio[0] : (r.fields.Seccio || 'Altres');
-            if (!grups[seccio]) grups[seccio] = [];
-            grups[seccio].push(r.fields);
+            if (seccio === 'Peu') {
+                peu = r.fields;
+            } else {
+                if (!grups[seccio]) grups[seccio] = [];
+                grups[seccio].push(r.fields);
+            }
         });
 
-        const ordreSeccions = ['Entrant', 'Primer', 'Segon', 'Postres', 'Vins'];
+        const ordreSeccions = ['Entrant', 'Primer', 'Segon', 'Postres', 'Vins', 'Peu'];
         const seccionsOrdenades = ordreSeccions.filter(s => grups[s]);
 
         let html = `
@@ -172,6 +177,19 @@
 
             html += `</div>`;
         });
+
+        // Peu de pàgina
+        if (peu) {
+            html += `
+                <div style="margin-top:30px; padding-top:20px; 
+                    border-top:1px solid #c8b99a; text-align:center;">
+                    <p style="font-size:0.85rem; color:#555; font-family:sans-serif; 
+                        line-height:1.8; margin:0;">
+                        ${peu.Nom || ''}
+                    </p>
+                </div>
+            `;
+        }
 
         return html;
     };
