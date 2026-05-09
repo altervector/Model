@@ -9,17 +9,25 @@
     if (!document.getElementById('modal-menu')) {
         document.body.insertAdjacentHTML('beforeend', `
             <div id="modal-menu" style="display:none; position:fixed; top:0; left:0; 
-                width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;
+                width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:9999;
                 align-items:center; justify-content:center; padding:20px;">
-                <div id="modal-menu-paper" style="background:white; width:100%; 
-                    max-width:600px; max-height:90vh; overflow-y:auto;
-                    border-radius:4px; padding:50px 40px;
-                    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 
-                                0 0 0 1px rgba(0,0,0,0.05);
-                    font-family: Georgia, serif; position:relative;">
+                <div id="modal-menu-paper" style="
+                    background: #f5f0e8;
+                    width: 100%;
+                    max-width: 550px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                    border-radius: 0;
+                    padding: 50px 45px;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.4), 
+                                4px 4px 0px rgba(0,0,0,0.05),
+                                -2px 0px 8px rgba(0,0,0,0.08);
+                    font-family: Georgia, serif;
+                    position: relative;">
                     <button onclick="tancarModalMenu()" style="position:absolute; 
-                        top:15px; right:20px; background:none; border:none; 
-                        font-size:24px; cursor:pointer; color:#999;">✕</button>
+                        top:12px; right:16px; background:none; border:none; 
+                        font-size:20px; cursor:pointer; color:#aaa; 
+                        font-family:sans-serif;">✕</button>
                     <div id="modal-menu-contingut"></div>
                 </div>
             </div>
@@ -31,65 +39,134 @@
         document.getElementById('modal-menu').style.display = 'none';
     };
 
-    // ─── OBRIR MODAL ─────────────────────────────────────────
-    const obrirModal = async function(tipus, titol) {
-        const modal = document.getElementById('modal-menu');
-        const contingut = document.getElementById('modal-menu-contingut');
+    // ─── PINTAR MENÚ (Primer/Segon/Postre + Peu) ─────────────
+    const pintarMenu = function(registres, titol) {
+        const grups = {};
+        let peu = null;
 
-        // Mostrem el modal amb spinner mentre carrega
-        contingut.innerHTML = `
-            <p style="text-align:center; color:#999; font-family:sans-serif;">
-                Carregant...
-            </p>`;
-        modal.style.display = 'flex';
+        registres.forEach(r => {
+            const seccio = r.fields.Seccio || 'Altres';
+            if (seccio === 'Peu') {
+                peu = r.fields;
+            } else {
+                if (!grups[seccio]) grups[seccio] = [];
+                grups[seccio].push(r.fields);
+            }
+        });
 
-        // Llegim les dades
-        const registres = await API.llegir(tipus);
-        if (!registres || registres.length === 0) {
-            contingut.innerHTML = `
-                <p style="text-align:center; color:#999;">
-                    No hi ha dades disponibles.
-                </p>`;
-            return;
+        const ordreSeccions = ['Entrant', 'Primer', 'Segon', 'Postre', 'Principal', 'Altres'];
+        const seccionsOrdenades = ordreSeccions.filter(s => grups[s]);
+
+        let html = `
+            <div style="text-align:center; margin-bottom:30px; 
+                border-bottom: 1px solid #c8b99a; padding-bottom:20px;">
+                <h2 style="font-size:1.4rem; color:#2c3e35; letter-spacing:3px; 
+                    text-transform:uppercase; margin:0; font-weight:normal;">
+                    ${titol}
+                </h2>
+                <p style="color:#aaa; font-size:11px; margin-top:8px; 
+                    font-family:sans-serif; letter-spacing:1px;">
+                    ${CONFIG.NOM}
+                </p>
+            </div>
+        `;
+
+        seccionsOrdenades.forEach(seccio => {
+            html += `
+                <div style="margin-bottom:22px;">
+                    <h3 style="font-size:0.75rem; letter-spacing:3px; 
+                        text-transform:uppercase; color:#c8973a; 
+                        border-bottom:1px solid #ddd3be; padding-bottom:6px; 
+                        margin-bottom:12px; font-family:sans-serif; font-weight:normal;">
+                        ${seccio}
+                    </h3>
+            `;
+
+            grups[seccio].forEach(plat => {
+                html += `
+                    <p style="margin:0 0 8px 0; font-size:0.95rem; color:#2a2a2a; 
+                        line-height:1.4;">
+                        ${plat.Nom || ''}
+                    </p>
+                `;
+            });
+
+            html += `</div>`;
+        });
+
+        // Peu de pàgina
+        if (peu) {
+            html += `
+                <div style="margin-top:30px; padding-top:20px; 
+                    border-top:1px solid #c8b99a; text-align:center;">
+                    <p style="font-size:0.85rem; color:#555; font-family:sans-serif; 
+                        line-height:1.8; margin:0 0 12px 0;">
+                        ${peu.Nom || ''}
+                    </p>
+                    ${peu.Preu ? `
+                    <p style="font-size:1.3rem; color:#2c3e35; font-weight:bold; 
+                        margin:0; letter-spacing:1px;">
+                        ${peu.Preu} € 
+                        <span style="font-size:0.75rem; color:#999; font-weight:normal; 
+                            font-family:sans-serif;">(IVA inclòs)</span>
+                    </p>` : ''}
+                </div>
+            `;
         }
 
-        // Agrupem per Seccio
+        return html;
+    };
+
+    // ─── PINTAR CARTA (Nom + Preu per plat) ──────────────────
+    const pintarCarta = function(registres, titol) {
         const grups = {};
+
         registres.forEach(r => {
             const seccio = r.fields.Seccio || 'Altres';
             if (!grups[seccio]) grups[seccio] = [];
             grups[seccio].push(r.fields);
         });
 
-        // Pintem la carta
-        let html = `
-            <div style="text-align:center; margin-bottom:30px; border-bottom:1px solid #ddd; padding-bottom:20px;">
-                <h2 style="font-size:1.6rem; color:#2c3e35; letter-spacing:2px; 
-                    text-transform:uppercase; margin:0;">${titol}</h2>
-                <p style="color:#999; font-size:12px; margin-top:8px; 
-                    font-family:sans-serif;">${CONFIG.NOM}</p>
-            </div>
-        `;
-
         const ordreSeccions = ['Entrant', 'Primer', 'Segon', 'Postre', 'Principal', 'Altres'];
         const seccionsOrdenades = ordreSeccions.filter(s => grups[s]);
 
+        let html = `
+            <div style="text-align:center; margin-bottom:30px; 
+                border-bottom:1px solid #c8b99a; padding-bottom:20px;">
+                <h2 style="font-size:1.4rem; color:#2c3e35; letter-spacing:3px; 
+                    text-transform:uppercase; margin:0; font-weight:normal;">
+                    ${titol}
+                </h2>
+                <p style="color:#aaa; font-size:11px; margin-top:8px; 
+                    font-family:sans-serif; letter-spacing:1px;">
+                    ${CONFIG.NOM}
+                </p>
+            </div>
+        `;
+
         seccionsOrdenades.forEach(seccio => {
             html += `
-                <div style="margin-bottom:25px;">
-                    <h3 style="font-size:0.85rem; letter-spacing:3px; text-transform:uppercase; 
-                        color:#c8973a; border-bottom:1px solid #f0e6d3; padding-bottom:8px; 
-                        margin-bottom:15px; font-family:sans-serif;">${seccio}</h3>
+                <div style="margin-bottom:22px;">
+                    <h3 style="font-size:0.75rem; letter-spacing:3px; 
+                        text-transform:uppercase; color:#c8973a; 
+                        border-bottom:1px solid #ddd3be; padding-bottom:6px; 
+                        margin-bottom:12px; font-family:sans-serif; font-weight:normal;">
+                        ${seccio}
+                    </h3>
             `;
 
             grups[seccio].forEach(plat => {
                 html += `
                     <div style="display:flex; justify-content:space-between; 
                         align-items:baseline; margin-bottom:10px;">
-                        <span style="font-size:1rem; color:#1a1a1a;">${plat.Nom || ''}</span>
-                        ${plat.Preu ? `<span style="font-size:0.95rem; color:#2c3e35; 
-                            font-weight:bold; margin-left:10px; white-space:nowrap;">
-                            ${plat.Preu} €</span>` : ''}
+                        <span style="font-size:0.95rem; color:#2a2a2a;">
+                            ${plat.Nom || ''}
+                        </span>
+                        ${plat.Preu ? `
+                        <span style="font-size:0.9rem; color:#2c3e35; font-weight:bold; 
+                            margin-left:15px; white-space:nowrap; font-family:sans-serif;">
+                            ${plat.Preu} €
+                        </span>` : ''}
                     </div>
                 `;
             });
@@ -97,14 +174,38 @@
             html += `</div>`;
         });
 
-        contingut.innerHTML = html;
+        return html;
     };
 
-    // ─── FUNCIONS PÚBLIQUES PER AL NAVBAR ────────────────────
+    // ─── OBRIR MODAL ─────────────────────────────────────────
+    const obrirModal = async function(tipus, titol, esCarta = false) {
+        const modal = document.getElementById('modal-menu');
+        const contingut = document.getElementById('modal-menu-contingut');
+
+        contingut.innerHTML = `
+            <p style="text-align:center; color:#999; font-family:sans-serif; 
+                font-size:14px;">Carregant...</p>`;
+        modal.style.display = 'flex';
+
+        const registres = await API.llegir(tipus);
+        if (!registres || registres.length === 0) {
+            contingut.innerHTML = `
+                <p style="text-align:center; color:#999; font-family:sans-serif;">
+                    No hi ha dades disponibles.
+                </p>`;
+            return;
+        }
+
+        contingut.innerHTML = esCarta 
+            ? pintarCarta(registres, titol)
+            : pintarMenu(registres, titol);
+    };
+
+    // ─── FUNCIONS PÚBLIQUES ───────────────────────────────────
     window.obrirModalMenuDiari = () => obrirModal('Menu_Diari', 'Menú Diari');
     window.obrirModalMenuCDS   = () => obrirModal('Menu_CDS',   'Menú Cap de Setmana');
     window.obrirModalMenuGrups = () => obrirModal('Menu_Grups', 'Menú de Grups');
-    window.obrirModalCarta     = () => obrirModal('Carta',      'La Nostra Carta');
-    window.obrirModalVins      = () => obrirModal('Vins',       'Vins i Caves');
+    window.obrirModalCarta     = () => obrirModal('Carta',      'La Nostra Carta',     true);
+    window.obrirModalVins      = () => obrirModal('Vins',       'Vins i Caves',        true);
 
 })();
