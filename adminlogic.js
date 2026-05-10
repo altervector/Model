@@ -25,7 +25,7 @@
             margin-bottom: 20px;
         }
 
-        #admin-capcalera h1 {
+        #admin-capcalera h3 {
             font-size: 1.2rem;
             color: #c8973a;
             letter-spacing: 2px;
@@ -48,7 +48,7 @@
         }
 
         #admin-estat {
-            width: 100%        /*xxx*/
+            width: 100%;
             font-size: 11px;
             color: #888;
             margin-bottom: 10px;
@@ -71,7 +71,13 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 11px;
+        }
 
+        th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #2c3e35;
         }
 
         th, td {
@@ -79,9 +85,6 @@
             border-bottom: 1px solid #2a2a3e;
             text-align: left;
             white-space: nowrap;
-                           position: sticky;             /*xxx*/
-               top: 0;                       /*xxx*/
-               z-index: 10;                  /*xxx*/
         }
 
         tbody tr:hover {
@@ -165,8 +168,7 @@
         const fila = document.createElement('tr');
         fila.setAttribute('data-id', id);
 
-        const seccions = ['Entrant', 'Primer', 'Segon', 'Postres', 'Vins', 'Peu'];
-        const checks = ['Menu_Diari', 'Menu_CDS', 'Menu_Grups', 'Carta', 'Vins', 'Visible'];
+        const seccions = ['Entrants', 'Primer', 'Segon', 'Postres', 'Vins', 'Peu'];
 
         const onBlurText = (camp, el) => {
             el.addEventListener('blur', () => {
@@ -192,6 +194,15 @@
             });
         };
 
+        // Visible
+        const cbVisible = document.createElement('input');
+        cbVisible.type = 'checkbox';
+        cbVisible.checked = f.Visible === true;
+        onChangeCheck('Visible', cbVisible);
+        const tdVisible = document.createElement('td');
+        tdVisible.className = 'col-check';
+        tdVisible.appendChild(cbVisible);
+
         // Nom
         const inputNom = document.createElement('input');
         inputNom.type = 'text';
@@ -211,6 +222,33 @@
         tdPreu.className = 'col-preu';
         tdPreu.appendChild(inputPreu);
 
+        // Menu_Diari
+        const cbDiari = document.createElement('input');
+        cbDiari.type = 'checkbox';
+        cbDiari.checked = f.Menu_Diari === true;
+        onChangeCheck('Menu_Diari', cbDiari);
+        const tdDiari = document.createElement('td');
+        tdDiari.className = 'col-check';
+        tdDiari.appendChild(cbDiari);
+
+        // Menu_CDS
+        const cbCDS = document.createElement('input');
+        cbCDS.type = 'checkbox';
+        cbCDS.checked = f.Menu_CDS === true;
+        onChangeCheck('Menu_CDS', cbCDS);
+        const tdCDS = document.createElement('td');
+        tdCDS.className = 'col-check';
+        tdCDS.appendChild(cbCDS);
+
+        // Menu_Grups
+        const cbGrups = document.createElement('input');
+        cbGrups.type = 'checkbox';
+        cbGrups.checked = f.Menu_Grups === true;
+        onChangeCheck('Menu_Grups', cbGrups);
+        const tdGrups = document.createElement('td');
+        tdGrups.className = 'col-check';
+        tdGrups.appendChild(cbGrups);
+
         // Seccio
         const sel = document.createElement('select');
         seccions.forEach(s => {
@@ -225,21 +263,34 @@
         tdSeccio.className = 'col-seccio';
         tdSeccio.appendChild(sel);
 
+        // Carta
+        const cbCarta = document.createElement('input');
+        cbCarta.type = 'checkbox';
+        cbCarta.checked = f.Carta === true;
+        onChangeCheck('Carta', cbCarta);
+        const tdCarta = document.createElement('td');
+        tdCarta.className = 'col-check';
+        tdCarta.appendChild(cbCarta);
+
+        // Vins
+        const cbVins = document.createElement('input');
+        cbVins.type = 'checkbox';
+        cbVins.checked = f.Vins === true;
+        onChangeCheck('Vins', cbVins);
+        const tdVins = document.createElement('td');
+        tdVins.className = 'col-check';
+        tdVins.appendChild(cbVins);
+
+        // Ordre de les columnes: Visible, Nom, Preu, Diari, CDS, Grups, Seccio, Carta, Vins
+        fila.appendChild(tdVisible);
         fila.appendChild(tdNom);
         fila.appendChild(tdPreu);
+        fila.appendChild(tdDiari);
+        fila.appendChild(tdCDS);
+        fila.appendChild(tdGrups);
         fila.appendChild(tdSeccio);
-
-        // Checks
-        checks.forEach(camp => {
-            const cb = document.createElement('input');
-            cb.type = 'checkbox';
-            cb.checked = f[camp] === true;
-            onChangeCheck(camp, cb);
-            const td = document.createElement('td');
-            td.className = 'col-check';
-            td.appendChild(cb);
-            fila.appendChild(td);
-        });
+        fila.appendChild(tdCarta);
+        fila.appendChild(tdVins);
 
         return fila;
     };
@@ -256,7 +307,7 @@
                 body: JSON.stringify({
                     Nom: 'Nou plat',
                     Preu: 0,
-                    Seccio: ['Entrant'],
+                    Seccio: ['Entrants'],
                     Visible: false
                 })
             });
@@ -287,15 +338,15 @@
                 <table>
                     <thead>
                         <tr>
+                            <th class="col-check">Visible</th>
                             <th class="col-nom">Nom</th>
                             <th class="col-preu">Preu</th>
-                            <th class="col-seccio">Secció</th>
                             <th class="col-check">Diari</th>
                             <th class="col-check">CDS</th>
                             <th class="col-check">Grups</th>
+                            <th class="col-seccio">Secció</th>
                             <th class="col-check">Carta</th>
                             <th class="col-check">Vins</th>
-                            <th class="col-check">Visible</th>
                         </tr>
                     </thead>
                     <tbody id="admin-tbody"></tbody>
@@ -305,7 +356,6 @@
 
         document.getElementById('btn-nou-plat').addEventListener('click', nouPlat);
 
-        // Llegim TOTS els registres sense filtre
         const res = await fetch(CONFIG.BASE_WORKER);
         const data = await res.json();
         registres = data;
