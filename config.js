@@ -6,7 +6,7 @@
 const CONFIG = {
 
     // 1. NEGOCI
-    NOM:            "AGORA",
+    NOM:            "ÀGORA",
     LOGO:           "Icon/logoAVtrans.png",
     SLOGAN:         "El teu eslògan aquí",
     TELEFON:        "+34 000 000 000",
