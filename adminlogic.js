@@ -63,9 +63,13 @@
             min-width: 150px;
         }
 
-        .taula-wrapper {
-            overflow-x: auto;
-        }
+ .taula-wrapper {
+    overflow-x: visible;
+}
+
+body {
+    overflow-x: auto;
+}
 
         table {
             width: 100%;
