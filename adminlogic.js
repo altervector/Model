@@ -48,6 +48,7 @@
         }
 
         #admin-estat {
+            width: 100%        /*xxx*/
             font-size: 11px;
             color: #888;
             margin-bottom: 10px;
