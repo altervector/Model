@@ -18,28 +18,21 @@
             padding: 20px;
         }
 
-        /* ── BARRA FIXA AMB NOMS COLUMNES ── */
         #admin-capcalera {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #2c3e35;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            margin: -20px -20px 10px -20px;
-            border-bottom: 2px solid #c8973a;
+            margin-bottom: 20px;
         }
 
         #admin-capcalera h3 {
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #c8973a;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        #btn-guardar-ultim {
+        #btn-nou-plat {
             background: #2c3e35;
             color: #c8973a;
             border: 1px solid #c8973a;
@@ -49,18 +42,17 @@
             letter-spacing: 1px;
         }
 
-        #btn-guardar-ultim:hover {
+        #btn-nou-plat:hover {
             background: #c8973a;
             color: #1a1a2e;
         }
 
         #admin-estat {
-            font-size: 12px;
-            font-weight: bold;
-            color: #c8973a;
-            letter-spacing: 1px;
-            text-align: center;
-            min-width: 150px;
+            width: 100%;
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 10px;
+            min-height: 16px;
         }
 
         .taula-wrapper {
@@ -103,10 +95,6 @@
             background: #2c3e20;
         }
 
-        tbody tr.fila-nova {
-            background: #1a2a1a;
-        }
-
         input[type="text"],
         input[type="number"],
         select {
@@ -142,15 +130,13 @@
 
     // ─── VARIABLES ───────────────────────────────────────────
     let registres = [];
-    let ultimCanvi = null;
 
     // ─── GUARDAR FILA ────────────────────────────────────────
     const guardarFila = async (id, dades) => {
         const estat = document.getElementById('admin-estat');
         const fila = document.querySelector(`tr[data-id="${id}"]`);
         if (fila) fila.classList.add('guardant');
-        estat.textContent = '⏳ Guardant...';
-        ultimCanvi = { id, dades };
+        estat.textContent = 'Guardant...';
 
         try {
             const res = await fetch(CONFIG.BASE_WORKER, {
@@ -173,39 +159,38 @@
     };
 
     // ─── CREAR FILA ──────────────────────────────────────────
-    const crearFila = (r, esNova = false) => {
-        const f = r.fields || {};
-        const id = r.id || null;
+    const crearFila = (r) => {
+        const f = r.fields;
+        const id = r.id;
 
         const getSeccio = (s) => Array.isArray(s) ? s[0] : (s || '');
 
         const fila = document.createElement('tr');
-        if (id) fila.setAttribute('data-id', id);
-        if (esNova) fila.classList.add('fila-nova');
+        fila.setAttribute('data-id', id);
 
         const seccions = ['Entrants', 'Primer', 'Segon', 'Postres', 'Vins', 'Peu'];
 
         const onBlurText = (camp, el) => {
             el.addEventListener('blur', () => {
-                if (id) guardarFila(id, { [camp]: el.value });
+                guardarFila(id, { [camp]: el.value });
             });
         };
 
         const onBlurNum = (camp, el) => {
             el.addEventListener('blur', () => {
-                if (id) guardarFila(id, { [camp]: parseFloat(el.value) || 0 });
+                guardarFila(id, { [camp]: parseFloat(el.value) || 0 });
             });
         };
 
         const onChangeCheck = (camp, el) => {
             el.addEventListener('change', () => {
-                if (id) guardarFila(id, { [camp]: el.checked });
+                guardarFila(id, { [camp]: el.checked });
             });
         };
 
         const onChangeSel = (camp, el) => {
             el.addEventListener('change', () => {
-                if (id) guardarFila(id, { [camp]: [el.value] });
+                guardarFila(id, { [camp]: [el.value] });
             });
         };
 
@@ -222,36 +207,7 @@
         const inputNom = document.createElement('input');
         inputNom.type = 'text';
         inputNom.value = f.Nom || '';
-        inputNom.placeholder = esNova ? 'Escriu el nom i prem Tab...' : '';
-        if (esNova) {
-            inputNom.addEventListener('blur', async () => {
-                if (!inputNom.value.trim()) return;
-                const estat = document.getElementById('admin-estat');
-                estat.textContent = '⏳ Creant plat...';
-                try {
-                    const res = await fetch(CONFIG.BASE_WORKER, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            Nom: inputNom.value.trim(),
-                            Preu: 0,
-                            Seccio: ['Entrants'],
-                            Visible: false
-                        })
-                    });
-                    if (res.ok) {
-                        estat.textContent = '✅ Plat creat — recarregant...';
-                        setTimeout(() => location.reload(), 1000);
-                    } else {
-                        estat.textContent = '❌ Error al crear';
-                    }
-                } catch (e) {
-                    estat.textContent = '❌ Error de connexió';
-                }
-            });
-        } else {
-            onBlurText('Nom', inputNom);
-        }
+        onBlurText('Nom', inputNom);
         const tdNom = document.createElement('td');
         tdNom.className = 'col-nom';
         tdNom.appendChild(inputNom);
@@ -325,6 +281,7 @@
         tdVins.className = 'col-check';
         tdVins.appendChild(cbVins);
 
+        // Ordre de les columnes: Visible, Nom, Preu, Diari, CDS, Grups, Seccio, Carta, Vins
         fila.appendChild(tdVisible);
         fila.appendChild(tdNom);
         fila.appendChild(tdPreu);
@@ -338,6 +295,34 @@
         return fila;
     };
 
+    // ─── NOU PLAT ────────────────────────────────────────────
+    const nouPlat = async () => {
+        const estat = document.getElementById('admin-estat');
+        estat.textContent = 'Creant nou plat...';
+
+        try {
+            const res = await fetch(CONFIG.BASE_WORKER, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    Nom: 'Nou plat',
+                    Preu: 0,
+                    Seccio: ['Entrants'],
+                    Visible: false
+                })
+            });
+
+            if (res.ok) {
+                estat.textContent = '✅ Plat creat — recarregant...';
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                estat.textContent = '❌ Error al crear';
+            }
+        } catch (e) {
+            estat.textContent = '❌ Error de connexió';
+        }
+    };
+
     // ─── INICIALITZAR ────────────────────────────────────────
     const inicialitzar = async () => {
         const panel = document.getElementById('admin-panel');
@@ -346,9 +331,9 @@
         panel.innerHTML = `
             <div id="admin-capcalera">
                 <h3>⚙️ Admin — ${CONFIG.NOM}</h3>
-                <div id="admin-estat"></div>
-                <button id="btn-guardar-ultim">💾 Guardar últim</button>
+                <button id="btn-nou-plat">+ Nou plat</button>
             </div>
+            <div id="admin-estat"></div>
             <div class="taula-wrapper">
                 <table>
                     <thead>
@@ -369,9 +354,7 @@
             </div>
         `;
 
-        document.getElementById('btn-guardar-ultim').addEventListener('click', async () => {
-            if (ultimCanvi) await guardarFila(ultimCanvi.id, ultimCanvi.dades);
-        });
+        document.getElementById('btn-nou-plat').addEventListener('click', nouPlat);
 
         const res = await fetch(CONFIG.BASE_WORKER);
         const data = await res.json();
@@ -379,7 +362,6 @@
 
         const tbody = document.getElementById('admin-tbody');
         registres.forEach(r => tbody.appendChild(crearFila(r)));
-        tbody.appendChild(crearFila({ fields: {}, id: null }, true));
 
         document.body.style.opacity = '1';
     };
