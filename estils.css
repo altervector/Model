@@ -31,7 +31,7 @@
 html {
     background-image: url("images/background.jpg");
     background-attachment: fixed;
-    background-size: cover;
+    background-size: cover;                    
     background-position: center;
     min-height: 100%;
 }
@@ -115,9 +115,10 @@ a:hover {
 /* ─── 4. HERO ─────────────────────────────────────────────── */
 .hero {
     position: relative;
-     margin-top: -70px;
-     padding-top: 70px;
-    width: 100%;
+     margin-top: 0px;
+     /*padding-top: 70px;*/
+     margin-inline: auto;                     /*xxx*/
+     width: 100%;                              /*xxx*/
     height: 100vh;
     min-height: 300px;
     overflow: hidden;
@@ -125,11 +126,13 @@ a:hover {
     align-items: center;
     justify-content: center;
     text-align: center;
+    outline: 0px solid red !important;      /*xxx*/
 }
 
 .hero-imatge {
     position: absolute;
     top: 0; left: 0;
+    /*padding: 40px 60px;                     /*xxx*/
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: 0;
