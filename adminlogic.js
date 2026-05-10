@@ -16,60 +16,8 @@
             font-family: 'Segoe UI', sans-serif;
             font-size: 13px;
             padding: 20px;
+            overflow-x: auto;
         }
-
-        /* ── BARRA FIXA AMB NOMS COLUMNES ── */
-        #admin-capcalera {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #2c3e35;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            margin: -20px -20px 10px -20px;
-            border-bottom: 2px solid #c8973a;
-        }
-
-        #admin-capcalera h3 {
-            font-size: 1rem;
-            color: #c8973a;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        #btn-guardar-ultim {
-            background: #2c3e35;
-            color: #c8973a;
-            border: 1px solid #c8973a;
-            padding: 8px 20px;
-            cursor: pointer;
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
-
-        #btn-guardar-ultim:hover {
-            background: #c8973a;
-            color: #1a1a2e;
-        }
-
-        #admin-estat {
-            font-size: 12px;
-            font-weight: bold;
-            color: #c8973a;
-            letter-spacing: 1px;
-            text-align: center;
-            min-width: 150px;
-        }
-
- .taula-wrapper {
-    overflow-x: visible;
-}
-
-body {
-    overflow-x: auto;
-}
 
         table {
             width: 100%;
@@ -141,6 +89,22 @@ body {
         .col-preu { width: 70px; }
         .col-check { width: 80px; text-align: center; }
         .col-seccio { width: 110px; }
+
+        #admin-estat {
+            position: fixed;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            font-size: 14px;
+            font-weight: bold;
+            color: #c8973a;
+            letter-spacing: 1px;
+            background: #1a1a2e;
+            border: 0px solid #c8973a;
+            padding: 6px 16px;
+            pointer-events: none;
+        }
     `;
     document.head.appendChild(estils);
 
@@ -347,35 +311,28 @@ body {
         const panel = document.getElementById('admin-panel');
         if (!panel) return;
 
-        panel.innerHTML = `
-            <div id="admin-capcalera">
-                <h3>⚙️ Admin — ${CONFIG.NOM}</h3>
-                <div id="admin-estat"></div>
-                <button id="btn-guardar-ultim">💾 Guardar últim</button>
-            </div>
-            <div class="taula-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="col-check">Visible</th>
-                            <th class="col-nom">Nom</th>
-                            <th class="col-preu">Preu</th>
-                            <th class="col-check">Diari</th>
-                            <th class="col-check">CDS</th>
-                            <th class="col-check">Grups</th>
-                            <th class="col-seccio">Secció</th>
-                            <th class="col-check">Carta</th>
-                            <th class="col-check">Vins</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-tbody"></tbody>
-                </table>
-            </div>
-        `;
+        const divEstat = document.createElement('div');
+        divEstat.id = 'admin-estat';
+        document.body.appendChild(divEstat);
 
-        document.getElementById('btn-guardar-ultim').addEventListener('click', async () => {
-            if (ultimCanvi) await guardarFila(ultimCanvi.id, ultimCanvi.dades);
-        });
+        panel.innerHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-check">Visible</th>
+                        <th class="col-nom">Nom</th>
+                        <th class="col-preu">Preu</th>
+                        <th class="col-check">Diari</th>
+                        <th class="col-check">CDS</th>
+                        <th class="col-check">Grups</th>
+                        <th class="col-seccio">Secció</th>
+                        <th class="col-check">Carta</th>
+                        <th class="col-check">Vins</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-tbody"></tbody>
+            </table>
+        `;
 
         const res = await fetch(CONFIG.BASE_WORKER);
         const data = await res.json();
