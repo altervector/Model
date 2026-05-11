@@ -94,7 +94,7 @@ a:hover {
 }
 
 .navbar-menu {
-    display: flex;
+    display: none;
     gap: 20px;
     list-style: none;
 }
@@ -296,4 +296,18 @@ a:hover {
 
 .footer-poweredby a {
     color: var(--color-accent);
+}
+
+/* ── TABLET (a partir de 768px) ── */
+@media (min-width: 768px) {
+
+}
+
+/* ── PC (a partir de 1024px) ── */
+@media (min-width: 1024px) {
+.navbar-menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
 }
