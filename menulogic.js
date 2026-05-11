@@ -49,10 +49,12 @@
                     font-family: 'Segoe UI', sans-serif;">
                     <p style="color:#c8973a; letter-spacing:2px; text-transform:uppercase;
                         font-size:12px; margin-bottom:20px;">Accés restringit</p>
-                    <input id="login-input" type="password" placeholder="Contrasenya"
+                    <input id="login-input" type="text" placeholder="Contrasenya"
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                         style="width:100%; padding:10px; background:#0d0d1a; border:1px solid #444;
                         color:#eee; font-size:14px; outline:none; margin-bottom:12px;
-                        text-align:center; letter-spacing:2px;">
+                        text-align:center; letter-spacing:2px;
+                        -webkit-text-security: disc;">
                     <button id="login-boto"
                         style="width:100%; padding:10px; background:#2c3e35; color:#c8973a;
                         border:1px solid #c8973a; font-size:13px; letter-spacing:1px;
