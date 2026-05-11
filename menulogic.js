@@ -5,7 +5,7 @@
 
 (function() {
 
-    // ─── ESTRUCTURA DEL MODAL ────────────────────────────────
+    // ─── ESTRUCTURA DEL MODAL MENÚ ───────────────────────────
     if (!document.getElementById('modal-menu')) {
         document.body.insertAdjacentHTML('beforeend', `
 <div id="modal-menu" style="display:none; position:fixed; top:0; left:0; 
@@ -33,12 +33,96 @@
         `);
     }
 
-    // ─── TANCAR MODAL ────────────────────────────────────────
+    // ─── ESTRUCTURA DEL MODAL LOGIN ──────────────────────────
+    if (!document.getElementById('modal-login')) {
+        document.body.insertAdjacentHTML('beforeend', `
+            <div id="modal-login" style="display:none; position:fixed; top:0; left:0;
+                width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999;
+                align-items:center; justify-content:center;">
+                <div style="
+                    background: #1a1a2e;
+                    border: 1px solid #c8973a;
+                    padding: 40px 30px;
+                    width: 90%;
+                    max-width: 320px;
+                    text-align: center;
+                    font-family: 'Segoe UI', sans-serif;">
+                    <p style="color:#c8973a; letter-spacing:2px; text-transform:uppercase;
+                        font-size:12px; margin-bottom:20px;">Accés restringit</p>
+                    <input id="login-input" type="password" placeholder="Contrasenya"
+                        style="width:100%; padding:10px; background:#0d0d1a; border:1px solid #444;
+                        color:#eee; font-size:14px; outline:none; margin-bottom:12px;
+                        text-align:center; letter-spacing:2px;">
+                    <button id="login-boto"
+                        style="width:100%; padding:10px; background:#2c3e35; color:#c8973a;
+                        border:1px solid #c8973a; font-size:13px; letter-spacing:1px;
+                        cursor:pointer; text-transform:uppercase;">
+                        Entrar
+                    </button>
+                    <p id="login-error" style="color:#e74c3c; font-size:12px;
+                        margin-top:12px; min-height:18px;"></p>
+                    <button onclick="tancarModalLogin()"
+                        style="margin-top:16px; background:none; border:none;
+                        color:#555; font-size:12px; cursor:pointer; letter-spacing:1px;">
+                        Cancel·lar
+                    </button>
+                </div>
+            </div>
+        `);
+    }
+
+    // ─── TANCAR MODAL MENÚ ───────────────────────────────────
     window.tancarModalMenu = function() {
         document.getElementById('modal-menu').style.display = 'none';
     };
 
-    // ─── PINTAR MENÚ (Primer/Segon/Postre + Peu) ───────────────────────────────────────────────────────────────────────────────────────────
+    // ─── OBRIR / TANCAR MODAL LOGIN ──────────────────────────
+    window.obrirModalLogin = function() {
+        const modal = document.getElementById('modal-login');
+        const input = document.getElementById('login-input');
+        const error = document.getElementById('login-error');
+        error.textContent = '';
+        input.value = '';
+        modal.style.display = 'flex';
+        setTimeout(() => input.focus(), 100);
+    };
+
+    window.tancarModalLogin = function() {
+        document.getElementById('modal-login').style.display = 'none';
+    };
+
+    // ─── LÒGICA LOGIN ────────────────────────────────────────
+    const fer_login = async () => {
+        const input = document.getElementById('login-input');
+        const error = document.getElementById('login-error');
+        const clau = input.value.trim();
+        if (!clau) return;
+
+        error.textContent = '⏳ Verificant...';
+
+        try {
+            const res = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
+            if (res.ok && (await res.text()) === 'OK') {
+                window.location.href = 'admin.html';
+            } else {
+                error.textContent = '❌ Clau incorrecta';
+                input.value = '';
+                input.focus();
+            }
+        } catch (e) {
+            error.textContent = '❌ Error de connexió';
+        }
+    };
+
+    // Botó entrar
+    document.getElementById('login-boto').addEventListener('click', fer_login);
+
+    // Tecla Enter dins l'input
+    document.getElementById('login-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') fer_login();
+    });
+
+    // ─── PINTAR MENÚ (Primer/Segon/Postre + Peu) ─────────────
     const pintarMenu = function(registres, titol) {
         const grups = {};
         const peus = [];
@@ -93,7 +177,6 @@
             html += `</div>`;
         });
 
-        // Peu de pàgina — tots els registres Peu
         if (peus.length > 0) {
             html += `
                 <div style="margin-top:30px; padding-top:20px; 
@@ -120,7 +203,7 @@
         return html;
     };
 
-    // ─── PINTAR CARTA (Nom + Preu per plat + Peu) ──────────────────────────────────────────────────────────────────────────────────────────
+    // ─── PINTAR CARTA (Nom + Preu per plat + Peu) ────────────
     const pintarCarta = function(registres, titol) {
         const grups = {};
         const peus = [];
@@ -182,7 +265,6 @@
             html += `</div>`;
         });
 
-        // Peu de pàgina — tots els registres Peu
         if (peus.length > 0) {
             html += `
                 <div style="margin-top:30px; padding-top:20px; 
@@ -202,7 +284,7 @@
         return html;
     };
 
-    // ─── OBRIR MODAL ─────────────────────────────────────────
+    // ─── OBRIR MODAL MENÚ ────────────────────────────────────
     const obrirModal = async function(tipus, titol, esCarta = false) {
         const modal = document.getElementById('modal-menu');
         const contingut = document.getElementById('modal-menu-contingut');
@@ -221,7 +303,7 @@
             return;
         }
 
-        contingut.innerHTML = esCarta 
+        contingut.innerHTML = esCarta
             ? pintarCarta(registres, titol)
             : pintarMenu(registres, titol);
     };
