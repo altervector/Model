@@ -27,7 +27,13 @@
                 </nav>
             `;
         }
+                const btnHamburguesa = document.querySelector('.navbar-hamburguesa');
+                const menu = document.querySelector('.navbar-menu');
 
+                btnHamburguesa.addEventListener('click', () => {
+                    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+                });
+                
         /* ─── 2. HERO ───────────────────────────────────────────── */
         const hero = document.getElementById('hero');
         if (hero) {
