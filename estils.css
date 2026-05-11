@@ -99,6 +99,14 @@ a:hover {
     list-style: none;
 }
 
+.navbar-hamburguesa {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 .navbar-menu a {
     color: var(--color-blanc);
     font-size: 12px;
@@ -310,4 +318,7 @@ a:hover {
     gap: 20px;
     list-style: none;
 }
+ .navbar-hamburguesa {
+        display: none;
+    }
 }
