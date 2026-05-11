@@ -99,7 +99,7 @@ html {
             left: 50%;
             transform: translateX(-50%);
             z-index: 100;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             color: #c8973a;
             letter-spacing: 1px;
