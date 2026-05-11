@@ -27,17 +27,18 @@
                 </nav>
             `;
         }
-                const btnHamburguesa = document.querySelector('.navbar-hamburguesa');
-                const menu = document.querySelector('.navbar-menu');
+const btnHamburguesa = document.querySelector('.navbar-hamburguesa');
+const menu = document.querySelector('.navbar-menu');
 
-                btnHamburguesa.addEventListener('click', () => {
-                menu.classList.toggle('obert');
-                menu.querySelectorAll('a').forEach(a => {
-                    a.addEventListener('click', () => {
-                        menu.classList.remove('obert');
-                    });
-                });
-                });
+btnHamburguesa.addEventListener('click', () => {
+    menu.classList.toggle('obert');
+});
+
+menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        menu.classList.remove('obert');
+    });
+});
 
         /* ─── 2. HERO ───────────────────────────────────────────── */
         const hero = document.getElementById('hero');
