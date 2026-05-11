@@ -103,6 +103,7 @@
         try {
             const res = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
             if (res.ok && (await res.text()) === 'OK') {
+                tancarModalLogin();
                 window.location.href = 'admin.html';
             } else {
                 error.textContent = '❌ Clau incorrecta';
