@@ -112,12 +112,13 @@ a:hover {
     flex-direction: column;
     position: absolute;
     top: 70px;
-    text-align: right;
+    left: 0;
+    right: 0;
     background: rgba(44, 62, 53, 0.95);
     padding: 20px;
-    align-items: flex-end;
     gap: 16px;
     z-index: 99;
+    align-items: flex-end;
 }
 
 .navbar-menu a {
