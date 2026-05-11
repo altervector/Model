@@ -14,7 +14,7 @@
             navbar.innerHTML = `
                 <nav class="navbar">
                     <div class="navbar-logo">
-                        <img id="logo-navbar" src="${CONFIG.BASE_URL}${CONFIG.LOGO}" alt="${CONFIG.NOM}">
+                        <img src="${CONFIG.BASE_URL}${CONFIG.LOGO}" alt="${CONFIG.NOM}">
                     </div>
                     <ul class="navbar-menu">
                         <li><a href="#menus">Menús</a></li>
@@ -24,26 +24,6 @@
                     </ul>
                 </nav>
             `;
-
-            // ─── LONG PRESS AL LOGO (1,5 segons → login) ─────────
-            const logo = document.getElementById('logo-navbar');
-            let timerLogo;
-
-            const iniciarPress = (e) => {
-                e.preventDefault();
-                timerLogo = setTimeout(() => {
-                    window.obrirModalLogin();
-                }, 1500);
-            };
-
-            const aturarPress = () => clearTimeout(timerLogo);
-
-            logo.addEventListener('mousedown',   iniciarPress);
-            logo.addEventListener('mouseup',     aturarPress);
-            logo.addEventListener('mouseleave',  aturarPress);
-            logo.addEventListener('touchstart',  iniciarPress, { passive: false });
-            logo.addEventListener('touchend',    aturarPress);
-            logo.addEventListener('contextmenu', (e) => e.preventDefault());
         }
 
         /* ─── 2. HERO ───────────────────────────────────────────── */
@@ -73,42 +53,45 @@
                     <div class="menus-grid">
 
                         <div class="menu-bloc">
-                            <div class="menu-bloc-imatge">
-                                <img src="${CONFIG.BASE_URL}images/diari.jpg"
-                                    alt="Menú Diari"
-                                    onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
-                            </div>
-                            <div class="menu-bloc-text">
-                                <h3>Menú Diari</h3>
-                                <p>De dilluns a divendres al migdia. Primer, segon, postre i beguda.</p>
-                                <a href="javascript:void(0)" onclick="obrirModalMenuDiari()" class="menu-bloc-boto">Veure menú</a>
-                            </div>
+                            <a href="javascript:void(0)" onclick="obrirModalMenuDiari()">
+                                <div class="menu-bloc-imatge">
+                                    <img src="${CONFIG.BASE_URL}images/diari.jpg"
+                                        alt="Menú Diari"
+                                        onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
+                                </div>
+                                <div class="menu-bloc-text">
+                                    <h3>Menú Diari</h3>
+                                    <p>De dilluns a divendres al migdia. Primer, segon, postre i beguda.</p>
+                                </div>
+                            </a>
                         </div>
 
                         <div class="menu-bloc">
-                            <div class="menu-bloc-imatge">
-                                <img src="${CONFIG.BASE_URL}images/finde.jpg"
-                                    alt="Menú Cap de Setmana"
-                                    onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
-                            </div>
-                            <div class="menu-bloc-text">
-                                <h3>Menú Cap de Setmana</h3>
-                                <p>Dissabte i diumenge. Una selecció especial per gaudir en família.</p>
-                                <a href="javascript:void(0)" onclick="obrirModalMenuCDS()" class="menu-bloc-boto">Veure menú</a>
-                            </div>
+                            <a href="javascript:void(0)" onclick="obrirModalMenuCDS()">
+                                <div class="menu-bloc-imatge">
+                                    <img src="${CONFIG.BASE_URL}images/finde.jpg"
+                                        alt="Menú Cap de Setmana"
+                                        onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
+                                </div>
+                                <div class="menu-bloc-text">
+                                    <h3>Menú Cap de Setmana</h3>
+                                    <p>Dissabte i diumenge. Una selecció especial per gaudir en família.</p>
+                                </div>
+                            </a>
                         </div>
 
                         <div class="menu-bloc">
-                            <div class="menu-bloc-imatge">
-                                <img src="${CONFIG.BASE_URL}images/grups.jpg"
-                                    alt="Menú Grups"
-                                    onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
-                            </div>
-                            <div class="menu-bloc-text">
-                                <h3>Menú Grups</h3>
-                                <p>Per a celebracions i esdeveniments. Consulta'ns per personalitzar el teu menú.</p>
-                                <a href="javascript:void(0)" onclick="obrirModalMenuGrups()" class="menu-bloc-boto">Veure menú</a>
-                            </div>
+                            <a href="javascript:void(0)" onclick="obrirModalMenuGrups()">
+                                <div class="menu-bloc-imatge">
+                                    <img src="${CONFIG.BASE_URL}images/grups.jpg"
+                                        alt="Menú Grups"
+                                        onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
+                                </div>
+                                <div class="menu-bloc-text">
+                                    <h3>Menú Grups</h3>
+                                    <p>Per a celebracions i esdeveniments. Consulta'ns per personalitzar el teu menú.</p>
+                                </div>
+                            </a>
                         </div>
 
                     </div>

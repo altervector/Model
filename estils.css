@@ -213,7 +213,46 @@ a:hover {
     margin-bottom: 15px;
 }
 
-/* ─── 6. SEPARADOR ────────────────────────────────────────── */
+/* ─── 6. BLOCS DE MENÚ ───────────────────────────────────── */
+.menu-bloc {
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.menu-bloc a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.menu-bloc a:hover {
+    text-decoration: none;
+}
+
+.menu-bloc-imatge img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-bloc-text {
+    padding: 12px 0;
+}
+
+.menu-bloc-text h3 {
+    font-family: var(--font-titol);
+    font-size: 1.1rem;
+    color: var(--color-principal);
+    margin-bottom: 6px;
+}
+
+.menu-bloc-text p {
+    font-size: 14px;
+    color: var(--color-text-suau);
+    line-height: 1.6;
+}
+
+/* ─── 7. SEPARADOR ────────────────────────────────────────── */
 .separador {
     border: none;
     border-top: 1px solid rgba(0,0,0,0.1);
