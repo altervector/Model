@@ -103,7 +103,7 @@ html {
             font-weight: bold;
             color: #c8973a;
             letter-spacing: 1px;
-            background: #1a1a2e;
+            /*background: #1a1a2e;*/
             border: 0px solid #c8973a;
             padding: 6px 16px;
             pointer-events: none;
