@@ -31,9 +31,9 @@
                 const menu = document.querySelector('.navbar-menu');
 
                 btnHamburguesa.addEventListener('click', () => {
-                    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+                menu.classList.toggle('obert');
                 });
-                
+
         /* ─── 2. HERO ───────────────────────────────────────────── */
         const hero = document.getElementById('hero');
         if (hero) {
