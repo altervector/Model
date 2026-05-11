@@ -9,7 +9,10 @@
     const estils = document.createElement('style');
     estils.textContent = `
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
+html {
+    background-image: none;
+    background: #1a1a2e;
+}
         body {
             background: #1a1a2e;
             color: #eee;
