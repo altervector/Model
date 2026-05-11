@@ -319,6 +319,7 @@ a:hover {
 .footer-poweredby a {
     color: var(--color-accent);
 }
+@keyframes gir { to { transform: rotate(360deg); } }
 
 /* ── TABLET (a partir de 768px) ── */
 @media (min-width: 768px) {
