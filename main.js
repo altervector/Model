@@ -15,8 +15,9 @@
                 <nav class="navbar">
                     <div class="navbar-logo">
                         <img src="${CONFIG.BASE_URL}${CONFIG.LOGO}" alt="${CONFIG.NOM}">
-                        <button class="navbar-hamburguesa">☰</button>
-                    </div>
+                    </div> 
+                       <button class="navbar-hamburguesa">☰</button>
+                    
                     <ul class="navbar-menu">
                         <li><a href="#menus">Menús</a></li>
                         <li><a href="javascript:void(0)" onclick="obrirModalCarta()">Carta</a></li>
