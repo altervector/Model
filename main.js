@@ -192,7 +192,9 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                 nav.classList.toggle('scrolled', window.scrollY > 50);
             }
         });
-
+    // ─── BLOQUEJAR MENÚ CONTEXTUAL ───────────────────────
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    
     }; // fi inicialitzar
 
     if (document.readyState === "complete" || document.readyState === "interactive") {
