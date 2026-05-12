@@ -316,8 +316,8 @@ html {
     const clau = sessionStorage.getItem('admin_clau');
     if (!clau) { window.location.href = 'index.html'; return; }
     
-    const res = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
-    const text = await res.text();
+    const resLogin = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
+    const text = await resLogin.text();
     if (text !== 'OK') { window.location.href = 'index.html'; return; }
     // ────────────────────────────────────────────────────
 
