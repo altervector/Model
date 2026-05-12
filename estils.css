@@ -50,7 +50,7 @@ img {
 }
 
 a {
-    color: var(--color-accent);
+    color: var(--seccio-text);
     text-decoration: none;
 }
 
