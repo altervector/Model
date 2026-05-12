@@ -318,7 +318,7 @@ html {
     
     const resLogin = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
     const text = await resLogin.text();
-    if (text !== 'OK') { window.location.href = 'index.html'; return; }
+    if (text.trim() !== 'OK') { window.location.href = 'index.html'; return; }
     // ────────────────────────────────────────────────────
 
         const panel = document.getElementById('admin-panel');
