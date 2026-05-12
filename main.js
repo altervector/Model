@@ -40,7 +40,27 @@ menu.querySelectorAll('a').forEach(a => {
     });
 });
 
-        /* ─── 2. HERO ───────────────────────────────────────────── */
+// ─── LONG PRESS AL LOGO (1,5 segons → login) ─────────
+const logo = document.querySelector('.navbar-logo img');
+let timerLogo;
+
+const iniciarPress = (e) => {
+    e.preventDefault();
+    timerLogo = setTimeout(() => {
+        window.obrirModalLogin();
+    }, 1500);
+};
+
+const aturarPress = () => clearTimeout(timerLogo);
+
+logo.addEventListener('mousedown',   iniciarPress);
+logo.addEventListener('mouseup',     aturarPress);
+logo.addEventListener('mouseleave',  aturarPress);
+logo.addEventListener('touchstart',  iniciarPress, { passive: false });
+logo.addEventListener('touchend',    aturarPress);
+logo.addEventListener('contextmenu', (e) => e.preventDefault());
+
+       /* ─── 2. HERO ───────────────────────────────────────────── */
         const hero = document.getElementById('hero');
         if (hero) {
             hero.innerHTML = `
