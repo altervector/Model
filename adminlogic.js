@@ -311,6 +311,16 @@ html {
 
     // ─── INICIALITZAR ────────────────────────────────────────
     const inicialitzar = async () => {
+
+    // ─── COMPROVACIÓ D'ACCÉS ─────────────────────────────
+    const clau = sessionStorage.getItem('admin_clau');
+    if (!clau) { window.location.href = 'index.html'; return; }
+    
+    const res = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
+    const text = await res.text();
+    if (text !== 'OK') { window.location.href = 'index.html'; return; }
+    // ────────────────────────────────────────────────────
+
         const panel = document.getElementById('admin-panel');
         if (!panel) return;
 
