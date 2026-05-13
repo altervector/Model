@@ -244,7 +244,7 @@ a:hover {
 .menu-bloc a {
     color: inherit;
     text-decoration: none;
-    display: block;
+    display: block; outline: 0px solid red !important;
 }
 
 .menu-bloc a:hover {
@@ -253,7 +253,7 @@ a:hover {
 
 .menu-bloc-imatge img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -342,7 +342,13 @@ a:hover {
     }
 
     .seccio {
-    padding: 40px 120px;
+    width: 95%;
+    padding: 40px 170px;
     }
 
+    .menu-bloc-imatge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 }
