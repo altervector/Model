@@ -80,6 +80,11 @@
 
     // ─── OBRIR / TANCAR MODAL LOGIN ──────────────────────────
     window.obrirModalLogin = function() {
+       if (sessionStorage.getItem('admin_clau')) {
+        window.location.href = 'admin.html';
+        return;
+        }
+    // si no hi ha sessió, mostra el modal normal
         const modal = document.getElementById('modal-login');
         const input = document.getElementById('login-input');
         const error = document.getElementById('login-error');
