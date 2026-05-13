@@ -353,7 +353,7 @@ html {
 
         const tbody = document.getElementById('admin-tbody');
         registres.forEach(r => tbody.appendChild(crearFila(r)));
-        tbody.appendChild(crearFila({ fields: {}, id: null }, true));
+        tbody.prepend(crearFila({ fields: {}, id: null }, true));
 
         document.body.style.opacity = '1';
     };
