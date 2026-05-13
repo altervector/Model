@@ -140,7 +140,7 @@ a:hover {
      margin-top: 0px;
      /*padding-top: 70px;*/
      margin-inline: auto;                     /*xxx*/
-     width: 80%;                              /*xxx*/
+     width: 100%;                              /*xxx*/
     height: 100vh;
     min-height: 300px;
     overflow: hidden;
