@@ -156,7 +156,7 @@ a:hover {
     top: 0; left: 0;
     /*padding: 40px 60px;                     /*xxx*/
     width: 100%; height: 100%;
-    object-fit: cointain;
+    object-fit: cover;
     z-index: 0;
 }
 
