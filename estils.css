@@ -211,7 +211,7 @@ a:hover {
 
 /* ─── 5. SECCIONS ─────────────────────────────────────────── */
 .seccio {
-    padding: 40px 60px;
+    padding: 40px 50px;
    scroll-margin-top: 70px;
 }
 
@@ -331,12 +331,18 @@ a:hover {
 
 /* ── PC (a partir de 1024px) ── */
 @media (min-width: 1024px) {
-.navbar-menu {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-}
- .navbar-hamburguesa {
-        display: none;
+    .navbar-menu {
+        display: flex;
+        gap: 20px;
+        list-style: none;
     }
+
+    .navbar-hamburguesa {
+            display: none;
+    }
+
+    .seccio {
+    padding: 40px 120px;
+    }
+
 }
