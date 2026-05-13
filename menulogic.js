@@ -299,8 +299,12 @@
         const contingut = document.getElementById('modal-menu-contingut');
 
         contingut.innerHTML = `
-            <p style="text-align:center; color:#999; font-family:sans-serif; 
-                font-size:14px;">Carregant...</p>`;
+    <div style="text-align:center; padding:40px;">
+        <div style="width:32px; height:32px; border:3px solid #ddd;
+            border-top-color:#c8973a; border-radius:50%;
+            animation:gir 0.8s linear infinite; margin:0 auto;">
+        </div>
+    </div>`;
         modal.style.display = 'flex';
 
         const registres = await API.llegir(tipus);
