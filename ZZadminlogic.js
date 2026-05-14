@@ -103,6 +103,7 @@ html {
             font-weight: bold;
             color: #c8973a;
             letter-spacing: 1px;
+            /*background: #1a1a2e;*/
             border: 0px solid #c8973a;
             padding: 6px 16px;
             pointer-events: none;
@@ -308,82 +309,24 @@ html {
         return fila;
     };
 
-    // ─── MOSTRAR LOGIN ───────────────────────────────────────
-    const mostrarLogin = () => {
-        document.body.style.opacity = '1';
+    // ─── INICIALITZAR ────────────────────────────────────────
+    const inicialitzar = async () => {
+
+    // ─── COMPROVACIÓ D'ACCÉS ─────────────────────────────
+    const clau = sessionStorage.getItem('admin_clau');
+    if (!clau) { window.location.href = 'index.html'; return; }
+    
+    const resLogin = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
+    const text = await resLogin.text();
+    if (text.trim() !== 'OK') { window.location.href = 'index.html'; return; }
+    // ────────────────────────────────────────────────────
+
         const panel = document.getElementById('admin-panel');
         if (!panel) return;
 
-        panel.innerHTML = `
-            <div style="
-                display: flex; align-items: center; justify-content: center;
-                min-height: 100vh; padding: 20px; margin: -20px;">
-                <div style="
-                    background: #0d0d1a; border: 1px solid #c8973a;
-                    padding: 40px 30px; width: 90%; max-width: 320px;
-                    text-align: center; font-family: 'Segoe UI', sans-serif;">
-                    <img src="${CONFIG.BASE_URL}${CONFIG.LOGO}" alt="${CONFIG.NOM}"
-                        style="height:60px; margin: 0 auto 20px auto;">
-                    <p style="color:#c8973a; letter-spacing:2px; text-transform:uppercase;
-                        font-size:12px; margin-bottom:20px;">Accés restringit</p>
-                    <input id="login-input" type="text" placeholder="Contrasenya"
-                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                        style="width:100%; padding:10px; background:#1a1a2e; border:1px solid #444;
-                        color:#eee; font-size:14px; outline:none; margin-bottom:12px;
-                        text-align:center; letter-spacing:2px; -webkit-text-security: disc;">
-                    <button id="login-boto"
-                        style="width:100%; padding:10px; background:#2c3e35; color:#c8973a;
-                        border:1px solid #c8973a; font-size:13px; letter-spacing:1px;
-                        cursor:pointer; text-transform:uppercase;">
-                        Entrar
-                    </button>
-                    <p id="login-error" style="color:#e74c3c; font-size:12px;
-                        margin-top:12px; min-height:18px;"></p>
-                </div>
-            </div>
-        `;
-
-        const fer_login = async () => {
-            const input = document.getElementById('login-input');
-            const error = document.getElementById('login-error');
-            const clau = input.value.trim();
-            if (!clau) return;
-            error.textContent = '⏳ Verificant...';
-            try {
-                const res = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
-                const text = await res.text();
-                if (text.trim() === 'OK') {
-                    sessionStorage.setItem('admin_clau', clau);
-                    mostrarTaula();
-                } else {
-                    error.textContent = '❌ Clau incorrecta';
-                    input.value = '';
-                    input.focus();
-                }
-            } catch (e) {
-                error.textContent = '❌ Error de connexió';
-            }
-        };
-
-        document.getElementById('login-boto').addEventListener('click', fer_login);
-        document.getElementById('login-input').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') fer_login();
-        });
-
-        setTimeout(() => document.getElementById('login-input').focus(), 100);
-    };
-
-    // ─── MOSTRAR TAULA ───────────────────────────────────────
-    const mostrarTaula = async () => {
-        const panel = document.getElementById('admin-panel');
-        if (!panel) return;
-
-        // Assegurem que no hi ha duplicats del div d'estat
-        if (!document.getElementById('admin-estat')) {
-            const divEstat = document.createElement('div');
-            divEstat.id = 'admin-estat';
-            document.body.appendChild(divEstat);
-        }
+        const divEstat = document.createElement('div');
+        divEstat.id = 'admin-estat';
+        document.body.appendChild(divEstat);
 
         panel.innerHTML = `
             <table>
@@ -413,20 +356,6 @@ html {
         tbody.prepend(crearFila({ fields: {}, id: null }, true));
 
         document.body.style.opacity = '1';
-    };
-
-    // ─── INICIALITZAR ────────────────────────────────────────
-    const inicialitzar = async () => {
-        const clau = sessionStorage.getItem('admin_clau');
-        if (clau) {
-            const resLogin = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
-            const text = await resLogin.text();
-            if (text.trim() === 'OK') {
-                mostrarTaula();
-                return;
-            }
-        }
-        mostrarLogin();
     };
 
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
