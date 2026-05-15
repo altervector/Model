@@ -9,7 +9,7 @@
     if (!document.getElementById('modal-menu')) {
         document.body.insertAdjacentHTML('beforeend', `
 <div id="modal-menu" style="display:none; position:fixed; top:0; left:0; 
-    width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:9999;
+    width:100%; height:100%; background:rgba(0,0,0,0.2); z-index:9999;
     align-items:flex-start; justify-content:center; padding:40px 20px;
     overflow-y:auto;">
     <div id="modal-menu-paper" style="
