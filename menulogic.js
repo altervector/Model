@@ -14,19 +14,13 @@
     overflow-y:auto;">
     <div id="modal-menu-paper" style="
         background: #e9e2d5;
-        background-image: radial-gradient(#d1c7b7 0.5px, transparent 0.5px);
-        background-size: 5px 5px;
         width: 100%;
         max-width: 550px;
         border-radius: 0;
         padding: 50px 45px;
-        box-shadow: 
-            inset 0 0 80px rgba(0,0,0,0.05),
-            0 20px 50px rgba(0,0,0,0.3), 
-            4px 4px 0px rgba(0,0,0,0.05);
+        box-shadow: -1px 2px 8px rgba(0, 0, 0, 0.8);
         font-family: Georgia, serif;
-        position: relative;
-        border: 1px solid #dcd3c1;">
+        position: relative;">
                     <button onclick="tancarModalMenu()" style="position:absolute; 
                         top:12px; right:16px; background:none; border:none; 
                         font-size:20px; cursor:pointer; color:#aaa; 
