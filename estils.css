@@ -4,6 +4,7 @@
    ============================================================ */
 
 /* ─── 1. VARIABLES ────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
 :root {
     --color-principal:  #2c3e35;
     --color-accent:     #c8973a;
@@ -13,7 +14,8 @@
     --color-text-suau:  #ffffff;
     --color-blanc:      #ffffff;
 
-    --font-titol:       'Georgia', serif;
+    /*--font-titol:       'Georgia', serif;*/
+    --font-titol:       'Comfortaa', sans-serif;
     --font-cos:         'Segoe UI', Roboto, sans-serif;
 
     --amplada-max:      100%;
@@ -177,9 +179,10 @@ a:hover {
 
 .hero-titol {
     font-family: var(--font-titol);
-    font-size: 2.2rem;
+    font-weight: 800;
+    font-size:6rem;
     letter-spacing: 3px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     margin-bottom: 10px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
