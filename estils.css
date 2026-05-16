@@ -344,6 +344,10 @@ a:hover {
             display: none;
     }
 
+    .hero-titol {
+    font-size:8rem;
+}
+
     .seccio {
     width: 95%;
     padding: 40px 300px;
