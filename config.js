@@ -10,9 +10,9 @@ const CONFIG = {
     LOGO:           "Icon/logoAVtrans.png",
     SLOGAN:         "El teu eslògan aquí",
     TELEFON:        "+34 000 000 000",
-    EMAIL:          "contacte@altervector.com",
+    EMAIL:          "agora@altervector.com",
     ADRECA:         "Carrer, número, població",
-    INSTAGRAM:      "https://www.instagram.com/",
+    INSTAGRAM:      "https://www.instagram.com/agoraplazavella"
     FACEBOOK:       "https://www.facebook.com/",
 
     // 2. RUTES (en local, tot és relatiu)
