@@ -180,8 +180,8 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                     </p>
                     <p class="footer-poweredby">
                         Powered by <a href="https://www.altervector.com" target="_blank">AlterVector</a>
+                        <span id="visites"></span>
                     </p>
-                    <p class="footer-visites" id="visites"></p>
                 </footer>
             `;
         }

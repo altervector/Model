@@ -323,11 +323,16 @@ a:hover {
     color: var(--color-accent);
 }
 
-.footer-visites {
+#visites:not(:empty)::before {
+    content: " · ";
+}
+
+#visites {
     font-size: 0.75rem;
     opacity: 0.5;
-    margin-top: 0.5rem;
 }
+
+
 /* ─── SPINNER ─────────────────────────────────────── */
 @keyframes gir {
     to { transform: rotate(360deg); }
