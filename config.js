@@ -24,7 +24,7 @@ const CONFIG = {
     COLOR_ACCENT:    "#c8973a",
 
     // 4. SEGURETAT (de moment buit, s'activa quan pujem a producció)
-    SITIOS_SEGUROS: ["localhost", "127.0.0.1", "altervector.github.io","agora.altervector.com/" "nouprojecte.pages.dev"],
+    SITIOS_SEGUROS: ["localhost", "127.0.0.1", "altervector.github.io","agora.altervector.com", "nouprojecte.pages.dev"],
     URL_OFICIAL:    "",
 
 };
