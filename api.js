@@ -27,7 +27,8 @@ const API = {
     filtrar(camp) {
         if (!window.DADES_MENU) return [];
         if (!camp) return window.DADES_MENU;
-        return window.DADES_MENU.filter(r => r.fields && r.fields[camp] === true);
+        return window.DADES_MENU.filter(r => r.fields && r.fields[camp] === true&& 
+            r.fields.Visible === true);
     },
 
     // ─── COMPATIBILITAT (per si algun lloc encara crida llegir) ─
