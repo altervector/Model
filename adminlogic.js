@@ -176,7 +176,7 @@
 
         /* ─── CEL·LA AMB CANVI PENDENT ─── */
         .pendent {
-            outline: 2px solid #c8973a !important;
+            outline: 2px solid #ff0000 !important;
         }
     `;
     document.head.appendChild(estils);
