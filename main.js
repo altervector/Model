@@ -181,6 +181,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                     <p class="footer-poweredby">
                         Powered by <a href="https://www.altervector.com" target="_blank">AlterVector</a>
                     </p>
+                    <p class="footer-visites" id="visites"></p>
                 </footer>
             `;
         }
@@ -195,7 +196,24 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
     // ─── BLOQUEJAR MENÚ CONTEXTUAL ───────────────────────
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     
-    }; // fi inicialitzar
+    
+/* ─── 6. VISITES ─────────────────────────────────────────── */
+        fetch(`${CONFIG.BASE_WORKER}/visites`)
+            .then(r => r.json())
+            .then(data => {
+                const el = document.getElementById('visites');
+                if (el && data.visites) {
+                    el.textContent = `${data.visites} visites`;
+                }
+            })
+            .catch(() => {}); // silenciós si falla
+
+
+
+
+
+
+}; // fi inicialitzar
 
     if (document.readyState === "complete" || document.readyState === "interactive") {
         inicialitzar();
