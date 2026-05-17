@@ -1,5 +1,5 @@
 /* ============================================================
-   ADMINLOGIC.JS - Panel d'administració de NewProject
+   ADMINLOGIC.JS - Panel d'administració de agora
    Depèn de: config.js, api.js
    ============================================================ */
 

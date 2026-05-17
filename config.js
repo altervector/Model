@@ -17,7 +17,7 @@ const CONFIG = {
 
     // 2. RUTES (en local, tot és relatiu)
     BASE_URL:       "./",
-    BASE_WORKER: "https://newproject.altervector.workers.dev",
+    BASE_WORKER: "https://agora.altervector.workers.dev",
 
     // 3. COLORS (per si cal canviar-los des de JS)
     COLOR_PRINCIPAL: "#2c3e35",

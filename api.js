@@ -1,5 +1,5 @@
 /* ============================================================
-   API.JS - Connector amb el Worker de NewProject
+   API.JS - Connector amb el Worker de agora
    Depèn de: config.js
    ============================================================ */
 
