@@ -366,14 +366,14 @@ a:hover {
     .navbar-menu a {
     font-size: 18px; /* Modifica aquest número (18, 19, 20...) fins que el vegis al teu gust */
     }
-    
+
     .navbar-hamburguesa {
             display: none;
     }
 
     .hero-titol {
     font-size:8rem;
-}
+    }
 
     .seccio {
     width: 95%;
