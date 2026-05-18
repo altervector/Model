@@ -64,7 +64,6 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
         const hero = document.getElementById('hero');
         if (hero) {
             hero.innerHTML = `
-                <section class="seccio" id="inici">
                 <section class="hero">
                     <img class="hero-imatge" src="${CONFIG.BASE_URL}images/hero.jpg"
                         alt="${CONFIG.NOM}">
@@ -137,7 +136,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                 <section class="seccio" id="qui-som">
                     <h2 class="seccio-titol">Qui som</h2>
                     <p class="seccio-text">
-                        Escriu aquí la descripció del negoci. Qui sou,
+                        Escriu aquí la descripció del negocio. Qui sou,
                         què oferiu, quina és la vostra filosofia.
                     </p>
                 </section>
@@ -164,7 +163,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                 </section>
 
                 <div style="text-align: center; margin: 20px 0; list-style: none;">
-                    <li><a href="#inici" style="text-decoration: none; color: #ff0000; font-weight: bold;">Inici 👆</a></li>
+                    <li><a href="#hero" style="text-decoration: none; color: #ff0000; font-weight: bold;">Inici 👆</a></li>
                 </div>
             `;
         }
