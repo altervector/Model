@@ -187,7 +187,7 @@
 
     // ─── ACTUALITZAR BARRA ───────────────────────────────────
     const actualitzarBarra = () => {
-        const total = Object.keys(window.CANVIS_PENDENTS).length;
+        const total = Object.values(window.CANVIS_PENDENTS).reduce((acc, dades) => acc + Object.keys(dades).length, 0);
         const btnGuardar = document.getElementById('btn-guardar');
         const btnDescartar = document.getElementById('btn-descartar');
         const comptador = document.getElementById('admin-comptador');
