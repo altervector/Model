@@ -61,7 +61,8 @@ logo.addEventListener('touchend',    aturarPress);
 logo.addEventListener('contextmenu', (e) => e.preventDefault());
 
        /* ─── 2. HERO ───────────────────────────────────────────── */
-        const hero = document.getElementById('hero');
+        <section class="seccio" id="inici">
+       const hero = document.getElementById('hero');
         if (hero) {
             hero.innerHTML = `
                 <section class="hero">
@@ -163,7 +164,8 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                 </section>
             `;
         }
-
+<li><a href="#inici">Inici 👆</a></li>
+   
         /* ─── 4. FOOTER ─────────────────────────────────────────── */
         const footer = document.getElementById('footer');
         if (footer) {
