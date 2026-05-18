@@ -352,12 +352,21 @@ a:hover {
 
 /* ── PC (a partir de 1024px) ── */
 @media (min-width: 1024px) {
+    .navbar-logo img {
+        height: 80px;
+        width: auto;
+    }
+
     .navbar-menu {
         display: flex;
-        gap: 20px;
+        gap: 30px;
         list-style: none;
     }
 
+    .navbar-menu a {
+    font-size: 18px; /* Modifica aquest número (18, 19, 20...) fins que el vegis al teu gust */
+    }
+    
     .navbar-hamburguesa {
             display: none;
     }
