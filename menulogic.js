@@ -221,9 +221,9 @@
     };
 
     // ─── FUNCIONS PÚBLIQUES ───────────────────────────────────
-    // Adaptar les categories segons les de la taula Airtable de l'Olé y Ají
-    window.obrirModalPlats  = () => obrirModal('Plats',  'Els nostres Plats');
-    window.obrirModalVins   = () => obrirModal('Vins',   'Vins i Caves');
-    window.obrirModalTapes  = () => obrirModal('Tapes',  'Les nostres Tapes');
+    window.obrirModalPlats   = () => obrirModal('Plats',   'Els nostres Plats');
+    window.obrirModalTapas   = () => obrirModal('Tapas',   'Les nostres Tapes');
+    window.obrirModalPostres = () => obrirModal('Postres', 'Les nostres Postres');
+    window.obrirModalBegudes = () => obrirModal('Begudes', 'Les nostres Begudes');
 
 })();

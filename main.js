@@ -54,13 +54,13 @@ const iniciarPress = (e) => {
 const aturarPress = () => clearTimeout(timerLogo);
 
 logo.addEventListener('mousedown',   iniciarPress);
-logo.addEventListener('mouseup',      aturarPress);
+logo.addEventListener('mouseup',     aturarPress);
 logo.addEventListener('mouseleave',  aturarPress);
 logo.addEventListener('touchstart',  iniciarPress, { passive: false });
 logo.addEventListener('touchend',    aturarPress);
 logo.addEventListener('contextmenu', (e) => e.preventDefault());
 
-        /* ─── 2. HERO ───────────────────────────────────────────── */
+       /* ─── 2. HERO ───────────────────────────────────────────── */
         const hero = document.getElementById('hero');
         if (hero) {
             hero.innerHTML = `
@@ -83,47 +83,61 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
             seccions.innerHTML = `
 
                 <section class="seccio" id="menus">
-                    <h2 class="seccio-titol">Els nostres Menús</h2>
+                    <h2 class="seccio-titol">La nostra Carta</h2>
                     <div class="menus-grid">
 
                         <div class="menu-bloc">
-                            <a href="javascript:void(0)" onclick="obrirModalMenuDiari()">
+                            <a href="javascript:void(0)" onclick="obrirModalPlats()">
                                 <div class="menu-bloc-imatge">
-                                    <img src="${CONFIG.BASE_URL}images/diari.jpg"
-                                        alt="Menú Diari"
+                                    <img src="${CONFIG.BASE_URL}images/plats.jpg"
+                                        alt="Plats"
                                         onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
                                 </div>
                                 <div class="menu-bloc-text">
-                                    <h3>Menú Diari</h3>
-                                    <p>De dilluns a divendres al migdia. Primer, segon, postre i beguda.</p>
+                                    <h3>Plats</h3>
+                                    <p>Els nostres plats principals. Cuina colombiana i espanyola.</p>
                                 </div>
                             </a>
                         </div>
 
                         <div class="menu-bloc">
-                            <a href="javascript:void(0)" onclick="obrirModalMenuCDS()">
+                            <a href="javascript:void(0)" onclick="obrirModalTapas()">
                                 <div class="menu-bloc-imatge">
-                                    <img src="${CONFIG.BASE_URL}images/finde.jpg"
-                                        alt="Menú Cap de Setmana"
+                                    <img src="${CONFIG.BASE_URL}images/tapes.jpg"
+                                        alt="Tapes"
                                         onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
                                 </div>
                                 <div class="menu-bloc-text">
-                                    <h3>Menú Cap de Setmana</h3>
-                                    <p>Dissabte i diumenge. Una selecció especial per gaudir en família.</p>
+                                    <h3>Tapes</h3>
+                                    <p>Una selecció de tapes per compartir.</p>
                                 </div>
                             </a>
                         </div>
 
                         <div class="menu-bloc">
-                            <a href="javascript:void(0)" onclick="obrirModalMenuGrups()">
+                            <a href="javascript:void(0)" onclick="obrirModalPostres()">
                                 <div class="menu-bloc-imatge">
-                                    <img src="${CONFIG.BASE_URL}images/grups.jpg"
-                                        alt="Menú Grups"
+                                    <img src="${CONFIG.BASE_URL}images/postres.jpg"
+                                        alt="Postres"
                                         onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
                                 </div>
                                 <div class="menu-bloc-text">
-                                    <h3>Menú Grups</h3>
-                                    <p>Per a celebracions i esdeveniments. Consulta'ns per personalitzar el teu menú.</p>
+                                    <h3>Postres</h3>
+                                    <p>La dolça manera d'acabar el repàs.</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="menu-bloc">
+                            <a href="javascript:void(0)" onclick="obrirModalBegudes()">
+                                <div class="menu-bloc-imatge">
+                                    <img src="${CONFIG.BASE_URL}images/begudes.jpg"
+                                        alt="Begudes"
+                                        onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
+                                </div>
+                                <div class="menu-bloc-text">
+                                    <h3>Begudes</h3>
+                                    <p>Vins, caves, refrescos i molt més.</p>
                                 </div>
                             </a>
                         </div>
@@ -136,7 +150,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                 <section class="seccio" id="qui-som">
                     <h2 class="seccio-titol">Qui som</h2>
                     <p class="seccio-text">
-                        Escriu aquí la descripció del negocio. Qui sou,
+                        Escriu aquí la descripció del negoci. Qui sou,
                         què oferiu, quina és la vostra filosofia.
                     </p>
                 </section>
@@ -161,13 +175,9 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                         <a href="mailto:${CONFIG.EMAIL}">✉️ ${CONFIG.EMAIL}</a>
                     </p>
                 </section>
-
-                <div style="text-align: center; margin: 20px 0; list-style: none;">
-                    <li><a href="#hero" style="text-decoration: none; color: #ff0000; font-weight: bold;">Inici 👆</a></li>
-                </div>
             `;
         }
-   
+
         /* ─── 4. FOOTER ─────────────────────────────────────────── */
         const footer = document.getElementById('footer');
         if (footer) {
@@ -184,7 +194,6 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                     </p>
                     <p class="footer-poweredby">
                         Powered by <a href="https://www.altervector.com" target="_blank">AlterVector</a>
-                        <span id="visites"></span>
                     </p>
                 </footer>
             `;
@@ -200,24 +209,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
     // ─── BLOQUEJAR MENÚ CONTEXTUAL ───────────────────────
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     
-    
-/* ─── 6. VISITES ─────────────────────────────────────────── */
-        fetch(`${CONFIG.BASE_WORKER}/visites`)
-            .then(r => r.json())
-            .then(data => {
-                const el = document.getElementById('visites');
-                if (el && data.visites) {
-                    el.textContent = `${data.visites} visites`;
-                }
-            })
-            .catch(() => {}); // silenciós si falla
-
-
-
-
-
-
-}; // fi inicialitzar
+    }; // fi inicialitzar
 
     if (document.readyState === "complete" || document.readyState === "interactive") {
         inicialitzar();
