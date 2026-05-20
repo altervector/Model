@@ -22,12 +22,13 @@ const API = {
     },
 
     // ─── FILTRAR LOCALMENT ───────────────────────────────────
-    // Rep el camp (ex: "Carta", "Menu_Diari") i filtra les dades
-    // ja carregades a memòria. Zero crides extra a Airtable.
+    // Rep la categoria (ex: "Plats", "Vins") i filtra les dades
+    // ja carregades a memòria basant-se en la taula d'Oleyají.
     filtrar(camp) {
         if (!window.DADES_MENU) return [];
         if (!camp) return window.DADES_MENU;
-        return window.DADES_MENU.filter(r => r.fields && r.fields[camp] === true&& 
+        return window.DADES_MENU.filter(r => r.fields && 
+            r.fields.Categoria === camp && 
             r.fields.Visible === true);
     },
 

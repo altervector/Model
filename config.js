@@ -6,28 +6,27 @@
 const CONFIG = {
 
     // 1. NEGOCI
-    NOM:            "àgora",
-    LOGO:           "Icon/logoAGtrans.png",
-    SLOGAN:         "Plaça Vella",
+    NOM:            "Nou Restaurant",
+    LOGO:           "Icon/Default.png",
+    SLOGAN:         "El teu Slogan",
     TELEFON:        "+34 000 000 000",
-    EMAIL:          "agora@altervector.com",
+    EMAIL:          "mail@altervector.com",
     ADRECA:         "Carrer, número, població",
-    INSTAGRAM:      "https://www.instagram.com/agoraplazavella",
+    INSTAGRAM:      "https://www.instagram.com/",
     FACEBOOK:       "https://www.facebook.com/",
     EMAIL_SUPORT:   "suport@altervector.com",
 
 
     // 2. RUTES (en local, tot és relatiu)
-    REPO_URL:       "https://altervector.github.io/agora/",
+    REPO_URL:       "https://altervector.github.io/Model/",
     BASE_URL:       "./",
-    BASE_WORKER:    "https://agora.altervector.workers.dev",
-    URL_OFICIAL:    "https://agora.altervector.com",
+    BASE_WORKER:    "https://oleyaji.altervector.workers.dev",
+    /*URL_OFICIAL:   "https://agora.altervector.com",*/
 
 
     // 3. SEGURETAT (de moment buit, s'activa quan pujem a producció)
     SITIOS_SEGUROS:  ["altervector.com", "pages.dev", "altervector.github.io", "localhost", "127.0.0.1"],
-    URL_OFICIAL:    "",
-    
+
     
     // 4. COLORS (per si cal canviar-los des de JS)
     COLOR_PRINCIPAL: "#2c3e35",

@@ -72,8 +72,6 @@
     }
 
     // ─── CARREGAR DADES EN OBRIR LA PÀGINA ──────────────────
-    // Una sola crida al Worker quan es carrega la pàgina.
-    // Tots els modals usaran aquestes dades sense fer més crides.
     API.carregarTot();
 
     // ─── TANCAR MODAL MENÚ ───────────────────────────────────
@@ -130,104 +128,11 @@
         if (e.key === 'Enter') fer_login();
     });
 
-    // ─── PINTAR MENÚ (Primer/Segon/Postre + Peu) ─────────────
-    const pintarMenu = function(registres, titol) {
-        const grups = {};
-        const peus = [];
-
-        registres.forEach(r => {
-            const seccio = Array.isArray(r.fields.Seccio) ? r.fields.Seccio[0] : (r.fields.Seccio || 'Altres');
-            if (seccio === 'Peu') {
-                peus.push(r.fields);
-            } else {
-                if (!grups[seccio]) grups[seccio] = [];
-                grups[seccio].push(r.fields);
-            }
-        });
-
-        const ordreSeccions = ['Entrants', 'Primer', 'Segon', 'Postres'];
-        const seccionsOrdenades = ordreSeccions.filter(s => grups[s]);
-
-        let html = `
-            <div style="text-align:center; margin-bottom:30px; 
-                border-bottom: 1px solid #c8b99a; padding-bottom:20px;">
-                <h2 style="font-size:1.4rem; color:#2c3e35; letter-spacing:3px; 
-                    text-transform:uppercase; margin:0; font-weight:normal;">
-                    ${titol}
-                </h2>
-                <p style="color:#aaa; font-size:11px; margin-top:8px; 
-                    font-family:sans-serif; letter-spacing:1px;">
-                    ${CONFIG.NOM}
-                </p>
-            </div>
-        `;
-
-        seccionsOrdenades.forEach(seccio => {
-            html += `
-                <div style="margin-bottom:22px;">
-                    <h3 style="font-size:0.75rem; letter-spacing:3px; 
-                        text-transform:uppercase; color:#c8973a; 
-                        border-bottom:1px solid #ddd3be; padding-bottom:6px; 
-                        margin-bottom:12px; font-family:sans-serif; font-weight:normal; text-align:center;">
-                        ${seccio}
-                    </h3>
-            `;
-
-            grups[seccio].forEach(plat => {
-                html += `
-                    <p style="margin:0 0 8px 0; font-size:0.95rem; color:#2a2a2a; 
-                        line-height:1.4; text-align:center;">
-                        ${plat.Nom || ''}
-                    </p>
-                `;
-            });
-
-            html += `</div>`;
-        });
-
-        if (peus.length > 0) {
-            html += `
-                <div style="margin-top:30px; padding-top:20px; 
-                    border-top:1px solid #c8b99a; text-align:center;">
-            `;
-            peus.forEach(p => {
-                html += `
-                    <p style="font-size:0.85rem; color:#555; font-family:sans-serif; 
-                        line-height:1.8; margin:0 0 6px 0;">
-                        ${p.Nom || ''}
-                    </p>
-                    ${p.Preu ? `
-                    <p style="font-size:1.3rem; color:#2c3e35; font-weight:bold; 
-                        margin:0 0 10px 0; letter-spacing:1px;">
-                        ${p.Preu} €
-                        <span style="font-size:0.75rem; color:#999; font-weight:normal; 
-                            font-family:sans-serif;">(IVA inclòs)</span>
-                    </p>` : ''}
-                `;
-            });
-            html += `</div>`;
-        }
-
-        return html;
-    };
-
-    // ─── PINTAR CARTA (Nom + Preu per plat + Peu) ────────────
-    const pintarCarta = function(registres, titol) {
-        const grups = {};
-        const peus = [];
-
-        registres.forEach(r => {
-            const seccio = Array.isArray(r.fields.Seccio) ? r.fields.Seccio[0] : (r.fields.Seccio || 'Altres');
-            if (seccio === 'Peu') {
-                peus.push(r.fields);
-            } else {
-                if (!grups[seccio]) grups[seccio] = [];
-                grups[seccio].push(r.fields);
-            }
-        });
-
-        const ordreSeccions = ['Entrants', 'Primer', 'Segon', 'Postres', 'Vins'];
-        const seccionsOrdenades = ordreSeccions.filter(s => grups[s]);
+    // ─── PINTAR CATÀLEG (Imatge + Nom + Descripció + Preu) ───
+    // Estil galeria de l'Olé y Ají — un plat per fila amb foto
+    const pintarCataleg = function(registres, titol) {
+        const baseCloudy = `https://res.cloudinary.com/${CONFIG.CLOUDI_NAME}/image/upload/f_auto,q_auto/`;
+        const fotoDefault = `${CONFIG.BASE_URL}images/Default.png`;
 
         let html = `
             <div style="text-align:center; margin-bottom:30px; 
@@ -243,58 +148,45 @@
             </div>
         `;
 
-        seccionsOrdenades.forEach(seccio => {
-            html += `
-                <div style="margin-bottom:22px;">
-                    <h3 style="font-size:0.75rem; letter-spacing:3px; 
-                        text-transform:uppercase; color:#c8973a; 
-                        border-bottom:1px solid #ddd3be; padding-bottom:6px; 
-                        margin-bottom:12px; font-family:sans-serif; font-weight:normal;">
-                        ${seccio}
-                    </h3>
-            `;
+        registres.forEach(r => {
+            const f = r.fields;
+            let foto = Array.isArray(f.Foto) ? f.Foto[0] : f.Foto;
+            const imgPath = foto ? `${baseCloudy}${foto}` : fotoDefault;
 
-            grups[seccio].forEach(plat => {
-                html += `
-                    <div style="display:flex; justify-content:space-between; 
-                        align-items:baseline; margin-bottom:10px;">
-                        <span style="font-size:0.95rem; color:#2a2a2a;">
-                            ${plat.Nom || ''}
-                        </span>
-                        ${plat.Preu ? `
-                        <span style="font-size:0.9rem; color:#2c3e35; font-weight:bold; 
-                            margin-left:15px; white-space:nowrap; font-family:sans-serif;">
-                            ${plat.Preu} €
-                        </span>` : ''}
+            html += `
+                <div style="display:flex; align-items:center; gap:16px; 
+                    margin-bottom:20px; padding-bottom:20px; 
+                    border-bottom:1px solid #ddd3be;">
+                    <img src="${imgPath}" 
+                        alt="${f.Nom || 'Plat'}" 
+                        onerror="this.src='${fotoDefault}'"
+                        style="width:90px; height:90px; object-fit:cover; 
+                            flex-shrink:0; border-radius:4px;">
+                    <div style="flex:1;">
+                        <p style="font-size:1rem; color:#2a2a2a; font-weight:bold; 
+                            margin:0 0 4px 0; font-family:sans-serif;">
+                            ${f.Nom || ''}
+                        </p>
+                        ${f.Descripcio ? `
+                        <p style="font-size:0.82rem; color:#666; margin:0 0 6px 0; 
+                            font-family:sans-serif; line-height:1.4;">
+                            ${f.Descripcio}
+                        </p>` : ''}
+                        ${f.Preu ? `
+                        <p style="font-size:0.95rem; color:#2c3e35; font-weight:bold; 
+                            margin:0; font-family:sans-serif;">
+                            ${f.Preu} €
+                        </p>` : ''}
                     </div>
-                `;
-            });
-
-            html += `</div>`;
-        });
-
-        if (peus.length > 0) {
-            html += `
-                <div style="margin-top:30px; padding-top:20px; 
-                    border-top:1px solid #c8b99a; text-align:center;">
+                </div>
             `;
-            peus.forEach(p => {
-                html += `
-                    <p style="font-size:0.85rem; color:#555; font-family:sans-serif; 
-                        line-height:1.8; margin:0 0 6px 0;">
-                        ${p.Nom || ''}
-                    </p>
-                `;
-            });
-            html += `</div>`;
-        }
+        });
 
         return html;
     };
 
     // ─── OBRIR MODAL ─────────────────────────────────────────
-    // Ja no crida al Worker — filtra localment des de window.DADES_MENU
-    const obrirModal = async function(tipus, titol, esCarta = false) {
+    const obrirModal = async function(categoria, titol) {
         const modal = document.getElementById('modal-menu');
         const contingut = document.getElementById('modal-menu-contingut');
 
@@ -307,7 +199,6 @@
             </div>`;
         modal.style.display = 'flex';
 
-        // Si les dades no estan carregades encara, espera
         const totes = await API.carregarTot();
         if (!totes) {
             contingut.innerHTML = `
@@ -317,8 +208,7 @@
             return;
         }
 
-        // Filtra localment — zero crides extra
-        const registres = API.filtrar(tipus);
+        const registres = API.filtrar(categoria);
         if (!registres || registres.length === 0) {
             contingut.innerHTML = `
                 <p style="text-align:center; color:#999; font-family:sans-serif;">
@@ -327,16 +217,13 @@
             return;
         }
 
-        contingut.innerHTML = esCarta
-            ? pintarCarta(registres, titol)
-            : pintarMenu(registres, titol);
+        contingut.innerHTML = pintarCataleg(registres, titol);
     };
 
     // ─── FUNCIONS PÚBLIQUES ───────────────────────────────────
-    window.obrirModalMenuDiari = () => obrirModal('Menu_Diari', 'Menú Diari');
-    window.obrirModalMenuCDS   = () => obrirModal('Menu_CDS',   'Menú Cap de Setmana');
-    window.obrirModalMenuGrups = () => obrirModal('Menu_Grups', 'Menú de Grups');
-    window.obrirModalCarta     = () => obrirModal('Carta',      'La Nostra Carta',     true);
-    window.obrirModalVins      = () => obrirModal('Vins',       'Vins i Caves',        true);
+    // Adaptar les categories segons les de la taula Airtable de l'Olé y Ají
+    window.obrirModalPlats  = () => obrirModal('Plats',  'Els nostres Plats');
+    window.obrirModalVins   = () => obrirModal('Vins',   'Vins i Caves');
+    window.obrirModalTapes  = () => obrirModal('Tapes',  'Les nostres Tapes');
 
 })();
