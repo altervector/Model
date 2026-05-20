@@ -132,7 +132,7 @@
     // Estil galeria de l'Olé y Ají — un plat per fila amb foto
     const pintarCataleg = function(registres, titol) {
         const baseCloudy = `https://res.cloudinary.com/${CONFIG.CLOUDI_NAME}/image/upload/f_auto,q_auto/`;
-        const fotoDefault = `${CONFIG.BASE_URL}images/Default.png`;
+        const fotoDefault = `${CONFIG.BASE_URL}Icon/Default.png`;
 
         let html = `
             <div style="text-align:center; margin-bottom:30px; 

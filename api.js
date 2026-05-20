@@ -24,12 +24,16 @@ const API = {
     // ─── FILTRAR LOCALMENT ───────────────────────────────────
     // Rep la categoria (ex: "Plats", "Vins") i filtra les dades
     // ja carregades a memòria basant-se en la taula d'Oleyají.
+
     filtrar(camp) {
-        if (!window.DADES_MENU) return [];
-        if (!camp) return window.DADES_MENU;
-        return window.DADES_MENU.filter(r => r.fields && 
-            r.fields.Categoria === camp && 
-            r.fields.Visible === true);
+    if (!window.DADES_MENU) return [];
+    if (!camp) return window.DADES_MENU;
+    return window.DADES_MENU.filter(r => 
+        r.fields && 
+        Array.isArray(r.fields.Categoria) &&
+        r.fields.Categoria.includes(camp) &&
+        r.fields.Visible === true
+    );
     },
 
     // ─── COMPATIBILITAT (per si algun lloc encara crida llegir) ─

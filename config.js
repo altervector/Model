@@ -28,6 +28,12 @@ const CONFIG = {
     SITIOS_SEGUROS:  ["altervector.com", "pages.dev", "altervector.github.io", "localhost", "127.0.0.1"],
 
     
+        // 4. CLOUDINARY
+    CLOUDI_NAME: "deopqx65a",
+    PDF_ID: "productos/Carta_OleyAji",
+    PDF_URL: "https://res.cloudinary.com/deopqx65a/image/upload/productos/Carta_OleyAji.pdf",
+
+    
     // 4. COLORS (per si cal canviar-los des de JS)
     COLOR_PRINCIPAL: "#2c3e35",
     COLOR_ACCENT:    "#c8973a",
