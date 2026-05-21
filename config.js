@@ -30,7 +30,7 @@ const CONFIG = {
     BLOC3:           "images/postres.jpg",
     BLOC4:           "images/begudes.png",
 
-    // 2.2 RUTES Textos
+    // 2.3 RUTES Textos
     HERO_BOTO:       "Descúbrenos",
     SECCIO_TITOL:    "Nuestra cocina",
 
