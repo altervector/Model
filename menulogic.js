@@ -221,9 +221,9 @@
     };
 
     // ─── FUNCIONS PÚBLIQUES ───────────────────────────────────
-    window.obrirModalPlats   = () => obrirModal('Plats',   'Els nostres Plats');
-    window.obrirModalTapas   = () => obrirModal('Tapas',   'Les nostres Tapes');
-    window.obrirModalPostres = () => obrirModal('Postres', 'Les nostres Postres');
-    window.obrirModalBegudes = () => obrirModal('Begudes', 'Les nostres Begudes');
+    window.obrirModalPlats   = () => obrirModal('Plats',   'Platos de la Casa');
+    window.obrirModalTapas   = () => obrirModal('Tapas',   'Nuestras Tapas');
+    window.obrirModalPostres = () => obrirModal('Postres', 'Nuestros Postres');
+    window.obrirModalBegudes = () => obrirModal('Begudes', 'Bebidas');
 
 })();

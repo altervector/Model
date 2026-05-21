@@ -83,7 +83,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
             seccions.innerHTML = `
 
                 <section class="seccio" id="menus">
-                    <h2 class="seccio-titol">La nostra Carta</h2>
+                    <h2 class="seccio-titol">Nuestra cocina</h2>
                     <div class="menus-grid">
 
                         <div class="menu-bloc">
