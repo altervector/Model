@@ -10,9 +10,9 @@ const CONFIG = {
     LOGO:           "Icon/logoOA.jpg",
     SLOGAN:         "Donde Colombia y España se unen en sabor.",
     TELEFON:        "+34 000 000 000",
-    EMAIL:          "mail@altervector.com",
+    EMAIL:          "oleyaji@altervector.com",
     ADRECA:         "Carrer, número, població",
-    INSTAGRAM:      "https://www.instagram.com/",
+    INSTAGRAM:      "https://www.instagram.com/oleyaji",
     FACEBOOK:       "https://www.facebook.com/",
     EMAIL_SUPORT:   "suport@altervector.com",
 
@@ -21,20 +21,27 @@ const CONFIG = {
     REPO_URL:       "https://altervector.github.io/Model/",
     BASE_URL:       "./",
     BASE_WORKER:    "https://oleyaji.altervector.workers.dev",
-    /*URL_OFICIAL:   "https://agora.altervector.com",*/
+    URL_OFICIAL:   "https://oleyaji.altervector.com",
+
+    // 2.2 RUTES Imatges
+    BLOC_HERO:       "images/hero.jpg",
+    BLOC1:           "images/plats.jpg",
+    BLOC2:           "images/tapes.jpg",
+    BLOC3:           "images/postres.jpg",
+    BLOC4:           "images/begudes.png",
 
 
     // 3. SEGURETAT (de moment buit, s'activa quan pujem a producció)
     SITIOS_SEGUROS:  ["altervector.com", "pages.dev", "altervector.github.io", "localhost", "127.0.0.1"],
 
-    
-        // 4. CLOUDINARY
+
+    // 4. COLORS (per si cal canviar-los des de JS)
+    COLOR_PRINCIPAL: "#2c3e35",
+    COLOR_ACCENT:    "#c8973a",    
+
+
+    // 5. CLOUDINARY
     CLOUDI_NAME: "deopqx65a",
     PDF_ID: "productos/Carta_OleyAji",
     PDF_URL: "https://res.cloudinary.com/deopqx65a/image/upload/productos/Carta_OleyAji.pdf",
-
-    
-    // 4. COLORS (per si cal canviar-los des de JS)
-    COLOR_PRINCIPAL: "#2c3e35",
-    COLOR_ACCENT:    "#c8973a",
 };
