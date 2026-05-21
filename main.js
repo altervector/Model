@@ -103,7 +103,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                         <div class="menu-bloc">
                             <a href="javascript:void(0)" onclick="obrirModalTapas()">
                                 <div class="menu-bloc-imatge">
-                                    <img src="${CONFIG.BASE_URL}i${CONFIG.BLOC2}"
+                                    <img src="${CONFIG.BASE_URL}${CONFIG.BLOC2}"
                                         alt="Tapes"
                                         onerror="this.src='${CONFIG.BASE_URL}${CONFIG.BLOC_HERO}'">
                                 </div>

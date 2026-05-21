@@ -50,7 +50,7 @@ const CONFIG = {
     QUI_DESC:        "Escribe aquí la descripción del negocio. Quienes sois, qué ofreceis, cual és la vuestra filosofia.",
 
     HORA_1:          "Dilluns a divendres: 13:00 – 15:30h",
-    HORA_2:          "Divendres i dissabte nit: 20:45 – 23:30h",
+    HORA_2:          "Divendres i dissabte nit: 20:30 – 23:30h",
     HORA_3:          "Diumenge: Tancat",
 
 
