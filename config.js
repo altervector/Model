@@ -46,7 +46,7 @@ const CONFIG = {
     BLOC4_TITOL:     "Bebidas",
     BLOC4_DESC:      "Vinos, Cavas, refrescos y mucho más.",
 
-    QUI_SOM:             "Quienes somos...",
+    QUI_SOM:         "Quienes somos...",
     QUI_DESC:        "Escribe aquí la descripción del negocio. Quienes sois, qué ofreceis, cual és la vuestra filosofia.",
 
     HORA_1:          "Dilluns a divendres: 13:00 – 15:30h",
