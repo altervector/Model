@@ -131,7 +131,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                         <div class="menu-bloc">
                             <a href="javascript:void(0)" onclick="obrirModalBegudes()">
                                 <div class="menu-bloc-imatge">
-                                    <img src="${CONFIG.BASE_URL}images/begudes.jpg"
+                                    <img src="${CONFIG.BASE_URL}images/begudes.png"
                                         alt="Begudes"
                                         onerror="this.src='${CONFIG.BASE_URL}images/hero.jpg'">
                                 </div>
