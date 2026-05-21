@@ -6,9 +6,9 @@
 const CONFIG = {
 
     // 1. NEGOCI
-    NOM:            "Nou Restaurant",
-    LOGO:           "Icon/Default.png",
-    SLOGAN:         "El teu Slogan",
+    NOM:            "Olé y Ají",
+    LOGO:           "Icon/logoOAtrans.png",
+    SLOGAN:         "Donde Colombia y España se unen en sabor.",
     TELEFON:        "+34 000 000 000",
     EMAIL:          "mail@altervector.com",
     ADRECA:         "Carrer, número, població",

@@ -187,7 +187,7 @@ a:hover {
 .hero-titol {
     font-family: var(--font-titol);
     font-weight: 800;
-    font-size:5rem;
+    font-size:3rem;
     letter-spacing: 3px;
     /*text-transform: uppercase;*/
     margin-bottom: 10px;
