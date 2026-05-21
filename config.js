@@ -30,6 +30,29 @@ const CONFIG = {
     BLOC3:           "images/postres.jpg",
     BLOC4:           "images/begudes.png",
 
+    // 2.2 RUTES Textos
+    HERO_BOTO:       "Descúbrenos",
+    SECCIO_TITOL:    "Nuestra cocina",
+
+    BLOC1_TITOL:     "Platos de la Casa",
+    BLOC1_DESC:      "Nuestro platos principales. Cocina Colombiana y Española.",
+
+    BLOC2_TITOL:     "Tapas",
+    BLOC2_DESC:      "Una selección de tapas para compartir.",
+
+    BLOC3_TITOL:     "Postres",
+    BLOC3_DESC:      "La mejor manera de terminar una buena comida.",
+
+    BLOC4_TITOL:     "Bebidas",
+    BLOC4_DESC:      "Vinos, Cavas, refrescos y mucho más.",
+
+    QUI_SOM:             "Quienes somos...",
+    QUI_DESC:        "Escribe aquí la descripción del negocio. Quienes sois, qué ofreceis, cual és la vuestra filosofia.",
+
+    HORA_1:          "Dilluns a divendres: 13:00 – 15:30h",
+    HORA_2:          "Divendres i dissabte nit: 20:45 – 23:30h",
+    HORA_3:          "Diumenge: Tancat",
+
 
     // 3. SEGURETAT (de moment buit, s'activa quan pujem a producció)
     SITIOS_SEGUROS:  ["altervector.com", "pages.dev", "altervector.github.io", "localhost", "127.0.0.1"],

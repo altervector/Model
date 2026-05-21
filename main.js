@@ -71,7 +71,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                     <div class="hero-contingut">
                         <h1 class="hero-titol">${CONFIG.NOM}</h1>
                         <p class="hero-slogan">${CONFIG.SLOGAN}</p>
-                        <a href="#qui-som" class="hero-boto">Descúbrenos</a>
+                        <a href="#qui-som" class="hero-boto">${CONFIG.HERO_BOTO}</a>
                     </div>
                 </section>
             `;
@@ -83,7 +83,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
             seccions.innerHTML = `
 
                 <section class="seccio" id="menus">
-                    <h2 class="seccio-titol">Nuestra cocina</h2>
+                    <h2 class="seccio-titol">${CONFIG.SECCIO_TITOL}</h2>
                     <div class="menus-grid">
 
                         <div class="menu-bloc">
@@ -94,8 +94,8 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                                         onerror="this.src='${CONFIG.BASE_URL}${CONFIG.BLOC_HERO}'">
                                 </div>
                                 <div class="menu-bloc-text">
-                                    <h3>Platos de la Casa</h3>
-                                    <p>Nuestro platos principales. Cocina Colombiana y Española.</p>
+                                    <h3>${CONFIG.BLOC1_TITOL}</h3>
+                                    <p>${CONFIG.BLOC1_DESC}</p>
                                 </div>
                             </a>
                         </div>
@@ -108,8 +108,8 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                                         onerror="this.src='${CONFIG.BASE_URL}${CONFIG.BLOC_HERO}'">
                                 </div>
                                 <div class="menu-bloc-text">
-                                    <h3>Tapas</h3>
-                                    <p>Una selección de tapas para compartir.</p>
+                                    <h3>${CONFIG.BLOC2_TITOL}</h3>
+                                    <p>${CONFIG.BLOC2_DESC}</p>
                                 </div>
                             </a>
                         </div>
@@ -122,8 +122,8 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                                         onerror="this.src='${CONFIG.BASE_URL}${CONFIG.BLOC_HERO}'">
                                 </div>
                                 <div class="menu-bloc-text">
-                                    <h3>Postres</h3>
-                                    <p>La mejor manera de terminar una buena comida.</p>
+                                    <h3>${CONFIG.BLOC3_TITOL}</h3>
+                                    <p>${CONFIG.BLOC3_DESC}</p>
                                 </div>
                             </a>
                         </div>
@@ -136,8 +136,8 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                                         onerror="this.src='${CONFIG.BASE_URL}${CONFIG.BLOC_HERO}'">
                                 </div>
                                 <div class="menu-bloc-text">
-                                    <h3>Bebidas</h3>
-                                    <p>Vinos, Cavas, refrescos y mucho más.</p>
+                                    <h3>${CONFIG.BLOC4_TITOL}</h3>
+                                    <p>${CONFIG.BLOC4_DESC}</p>
                                 </div>
                             </a>
                         </div>
@@ -148,20 +148,18 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                 <hr class="separador">
 
                 <section class="seccio" id="qui-som">
-                    <h2 class="seccio-titol">Quienes somos...</h2>
+                    <h2 class="seccio-titol">${CONFIG.QUI_SOM}</h2>
                     <p class="seccio-text">
-                        Escribe aquí la descripción del negocio. Quienes sois,
-                        què ofreceis, cual  és la vostra filosofia.
-                    </p>
+                        ${CONFIG.QUI_DESC}</p>
                 </section>
 
                 <hr class="separador">
 
                 <section class="seccio" id="horaris">
                     <h2 class="seccio-titol">Horarios</h2>
-                    <p class="seccio-text">Dilluns a divendres: 13:00 – 15:30h</p>
-                    <p class="seccio-text">Divendres i dissabte nit: 20:45 – 23:30h</p>
-                    <p class="seccio-text">Diumenge: Tancat</p>
+                    <p class="seccio-text">${CONFIG.HORA_1}</p>
+                    <p class="seccio-text">${CONFIG.HORA_2}</p>
+                    <p class="seccio-text">${CONFIG.HORA_3}</p>
                 </section>
 
                 <hr class="separador">
