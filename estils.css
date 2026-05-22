@@ -221,7 +221,9 @@ a:hover {
 
 /* ─── 5. SECCIONS ─────────────────────────────────────────── */
 .seccio {
-    padding: 40px 50px;
+          /*max-width: 800px;*/
+   margin: 0 auto;
+   padding: 40px 50px;
    scroll-margin-top: 70px;
 }
 
@@ -351,7 +353,11 @@ a:hover {
 
 /* ── TABLET (a partir de 768px) ── */
 @media (min-width: 768px) {
-
+.seccio {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 50px;
+    }
 }
 
 /* ── PC (a partir de 1024px) ── */
@@ -380,8 +386,9 @@ a:hover {
     }
 
     .seccio {
-    
-    padding: 40px 350px;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 50px;
     }
 
     .menu-bloc-imatge img {
