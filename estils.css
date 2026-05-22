@@ -377,7 +377,7 @@ a:hover {
 
     .seccio {
     width: 95%;
-    padding: 40px 180px;
+    padding: 40px auto;
     }
 
     .menu-bloc-imatge img {
