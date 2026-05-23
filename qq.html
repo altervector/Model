@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ca">
+<script src="https://altervector.github.io//config.js"></script>
+
+<head>
+    
+    <style>
+:root {
+    /* --- CONFIGURACIÓ DE SEGURETAT --- */
+    
+    
+    /* Medidas Maestras */
+    /*ok*/--amplada-mobil: 860px;
+    
+    /* Fondos */
+    /*ok*/--bg-html: #deccba;        /* Fondo arena total */
+    /*ok*/--bg-htmledit: rgba(250, 250, 123, 0.963);        /* Fondo groc */
+    /*ok*/--bg-body: transparent;      /* El cuerpo es transparente para ver el arena */
+    /*ok*/--bg-modaledit: rgba(48, 127, 201, 0.715);       /* Fondo del modal Edicion*/
+    /*ok*/--bg-modalnew: rgba(40, 167, 69, 0.8);        /* Fondo del modal Nuevo*/
+    
+    /* Textos */
+    /*ok*/--text-noms: #0056b3;      /* Azul  para nombres y títulos */
+    --text-desc: #666666;      /* Gris para descripciones */
+    --text-preu: #191970;      /* Color del precio */
+    --text-light: #ffffff;     /* Blanco para textos sobre fondos oscuros */
+
+    /* Interactivos (Links y Botones) */
+    /*ok*/--color-hr: #0056b3;       /*Color HR*/
+    /*ok*/--color-link: #0056b3;     /* Color de los enlaces */
+    --color-btn-save: #191970; /* Botón guardar */
+    --color-btn-add: #28a745;  /* Botón flotante de añadir (verde) */
+    --color-accent: #fb9d46;   /* El naranja para detalles pequeños */
+
+/* Textos y Detalles */
+    --color-titols: #191970;    /* Azul medianoche */
+    --color-preu: #191970;      /* Por si quieres que el precio destaque diferente luego */
+    --color-descripcio: #666666; /* El gris de los detalles */
+
+
+}
+/*//////////////////////   BLOC 3 IMATGES (Index)    ////////////////////////////////////////////*/
+           
+    .bloc-imatges {    /*   Contenidor   */
+        max-width: device-width;
+        width: 90%;
+        margin: 50px auto;
+       height: 600px; 
+       display: flex; 
+        gap: 8px; 
+        align-items: stretch; /* <--- Afegeix això      Iguala derta i esquerra*/
+        outline: 1px solid red !important;
+    /* background-color: #f5f5f5; */
+    }
+
+/*______________________COLUMNA ESQUERRA (Contenidor de les 2 petites)_____ */
+                .columna-esquerra {
+                    display: flex; 
+                    flex-direction: column; 
+                    /*justify-content: space-between;*/
+                    width: 42%;
+                    gap: 8px; 
+                    height: 100%; /* Assegura que la columna ocupa tot el pare */
+                    outline: 1px solid blue !important;
+                }                                                                                               
+
+/*____________________ IMATGE GRAN A LA DRETA _______Contenidor...____*/
+                .imatge-dreta {
+                    display: flex; 
+                    width: 58%;
+                    height: 100%; 
+                    margin: 0px 0px;
+                    outline: 0px solid red !important;
+                }
+
+/*______________________Bloc inferior (Postres i  Mapa)_________Contenidor...____________ */
+                .bloc-imatge-inferior {
+                    max-width: device-width;;
+                    width: 90%;
+                    margin: 10px auto; /* Donem espai (10px) perquè no s'enganxi a dalt */
+                    display: block;
+                    outline: 0px solid brown !important;
+                }
+
+                /* Forcem que la caixa de Postres sigui igual que el conjunt de dalt */
+                .item-horizontal {
+                    height: 296px !important; 
+                    margin-bottom:10px;
+                }
+
+
+
+
+/*???????????????????????????????????????????????????*/
+                .item-horizontal img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+/*????????????????????????????????????????????????????????*/
+
+
+
+
+
+
+
+
+/*/////////////////////////   ESTIL DE LES IMATGES   (Index)   ///////////////////*/
+
+.imatge-categoria {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+    outline: 1px solid orangered !important;
+}
+
+/*___________________________________ Asegurem que els enllaços siguin el contenidor dels textos _______*/
+.enllac-imatge-categoria {
+    position: relative; /* Això és l'àncora pels textos */
+    display: block;
+    width: 100%;
+    box-shadow: -1px 2px 8px rgba(0, 0, 0, 0.8);
+    /*background-color: #f5f5f5;*/
+    padding: 0px;
+    box-sizing: border-box; /* Molt important per les mides! */
+}
+
+/*___________________________________________ EFECTE VISUAL AL HOVER________________________________ */
+.enllac-imatge-categoria:hover img {
+    opacity: 0.85; 
+    transition: opacity 0.2s ease-in-out;
+}
+                /* 2. Apliquem els 97px NOMÉS a les fotos de la columna esquerra */
+            .columna-esquerra .enllac-imatge-categoria {
+                height: 296px;
+            }
+
+            /* 3. Apliquem el 100% NOMÉS a la foto de la dreta */
+            .imatge-dreta .enllac-imatge-categoria {
+                height: 100%;
+            }
+
+/* ________________________________ Els textos flotants (Lletres blanques amb ombra, sense marc)_____________ */
+.etiqueta-categoria {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: rgb(182, 67, 67);
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(255,255,0,1); /* Ombra perquè es llegeixi bé */
+    pointer-events: none;
+    z-index: 10;
+}
+
+</style>
+
+ </head>
+<body> 
+    <script>
+    const repoBase = CONFIG.REPO_URL;
+    </script>
+<div class="bloc-imatges">
+        <div class="columna-esquerra">
+            <a href="principal.html?Categoria=Begudes" class="enllac-imatge-categoria"> 
+                <img src="https://altervector.github.io//images/PicBloc1.webp" alt="Begudes" class="imatge-categoria">
+                <span class="etiqueta-categoria">Bebidas</span>
+            </a>
+            <a href="principal.html?Categoria=Tapas" class="enllac-imatge-categoria">
+                <img src="https://altervector.github.io//images/PicBloc2.webp" alt="Tapas" class="imatge-categoria">
+                <span class="etiqueta-categoria">Tapas</span>
+            </a>
+        </div>
+        <div class="imatge-dreta">
+            <a href="principal.html?Categoria=Plats" class="enllac-imatge-categoria">
+                <img src="https://altervector.github.io//images/PicBloc3.webp" alt="Platos de la Casa" class="imatge-categoria">
+                <span class="etiqueta-categoria">Platos de la Casa</span>
+            </a>
+        </div>
+    </div>
+    <div class="bloc-imatge-inferior">
+            <a href="principal.html?Categoria=Postres" class="enllac-imatge-categoria item-horizontal">
+                <img src="https://altervector.github.io//images/PicBloc4.webp" alt="Postres" class="imatge-categoria">
+                <span class="etiqueta-categoria">Postres</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=OLÉ+Y+AJÍ+COMIDA+MEDITERRANEA+Y+LATINA+Vilafranca" target="_blank" class="enllac-imatge-categoria item-horizontal">
+                <img src="https://altervector.github.io//images/PicBloc5.webp" alt="Donde estamos..." class="imatge-categoria">
+                <span class="etiqueta-categoria" style="text-shadow: 2px 2px 4px rgba(0,0,0,1);">Donde estamos (Maps)</span>
+            </a>
+    </div>
+    <p style="max-width:var(--amplada-mobil); width:90%; margin: 10px auto 10px auto; font-size: 14px; color:#555; text-align: center;">
+        <em>Servicio a domicilio disponible <br><span style="display:block; text-align:center;">...</span></em>
+    </p>
+</body>
+</html>

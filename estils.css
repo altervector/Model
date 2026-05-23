@@ -1,399 +1,537 @@
 /* ============================================================
    ESTILS.CSS - Plantilla moderna per a negocis
-   Paleta: verd fosc + daurat + crema
+   Paleta: Cap
    ============================================================ */
 
+
 /* ─── 1. VARIABLES ────────────────────────────────────────── */
-/*@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');*/
-@font-face {
-    font-family: 'Comfortaa';
-    src: url('fonts/Comfortaa-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
 
 :root {
-    --color-principal:  #2c3e35;
-    --color-accent:     #c8973a;
-    --color-fons:       #f8f5f0;
-    --color-fons-alt:   #ffffff;
-    --color-text:       #1a1a1a;
-    --color-text-suau:  #ffffff;
-    --color-blanc:      #ffffff;
+       
+    /* Medidas Maestras */
+    /*ok--amplada-mobil:/* 800px;  /*xxx-400*/
+    
+    /* Fondos */
+    /*ok*/--bg-html: url(images/background.jpg); /*#deccba;        /* Fondo arena total */
+    /*ok*/--bg-htmledit: rgba(250, 250, 123, 0.963);            /* Fondo groc Mode Admin*/
+    /*ok*/--bg-body: transparent;                                /* El body és transp per veure bg-html */
+    /*ok*/--bg-modaledit: rgba(48, 127, 201, 0.715);          /* Fondo del modal Edició*/
+    /*ok*/--bg-modalnew: rgba(40, 167, 69, 0.8);             /* Fondo del modal Nou*/
+    
+    /* Textos */
+    /*ok*/--text-noms: #0056b3;      /* Azul  para nombres y tÃ­tulos */
+    --text-desc: #666666;      /* Gris para descripciones */
+    --text-preu: #191970;      /* Color del precio */
+    --text-light: #ffffff;     /* Blanco para textos sobre fondos oscuros */
 
-    /*--font-titol:       'Georgia', serif;*/
-    --font-titol:       'Comfortaa', sans-serif;
-    --font-cos:         'Segoe UI', Roboto, sans-serif;
+    /* Interactivos (Links y Botones) */
+    /*ok*/--color-hr: #0056b3;       /*Color HR*/
+    /*ok*/--color-link: #0056b3;     /* Color de los enlaces */
+    --color-btn-save: #191970; /* BotÃ³n guardar */
+    --color-btn-add: #28a745;  /* BotÃ³n flotante de aÃ±adir (verde) */
+    --color-accent: #fb9d46;   /* El naranja para detalles pequeÃ±os */
 
-    --amplada-max:      100%;
-    --radi:             10px;
-    --ombra:            0 4px 20px rgba(0,0,0,0.1);
+/* Textos y Detalles */
+    --color-titols: #191970;    /* Azul medianoche */
+    --color-preu: #191970;      /* Por si quieres que el precio destaque diferente luego */
+    --color-descripcio: #666666; /* El gris de los detalles */
+
+
 }
-
-/* ─── 2. RESET I BASE ─────────────────────────────────────── */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 html {
-    background-image: url("images/background.jpg");
+    background-image: var(--bg-html);
     background-attachment: fixed;
     background-size: cover;                    
     background-position: center;
     min-height: 100%;
 }
 
+
 body {
-    font-family: var(--font-cos);
-    background-color: transparent;
-    color: var(--color-text);
-    max-width: var(--amplada-max);
-    margin: 0 auto;
-}
+    max-width: var(--amplada-mobil);
+    margin: 0 auto !important;
+    
+    background-color: var(--bg-body) !important; /* Para que deje ver el fondo del html */
+
+    min-height: 100vh;
+    /*box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Opcional: le da un toque profesional al marco */
+    overflow-x: hidden; /* Evita el moviment lateral al mÃ²bil */
+    position: relative;
+    outline: 0px solid red !important;
+}   
 
 img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 a {
-    color: var(--seccio-text);
     text-decoration: none;
+    color: inherit; /* Els enllaÃ§os no canvien de color sols */
 }
 
-a:hover {
-    text-decoration: underline;
+
+/*/////////////////////////   CAPÃ‡ALERA PRINCIPAL  //////////////////////////////////////////////////////////////////*/
+
+
+.capcalera-principal {        /*   Contenidor   */
+
+    max-width: var(--amplada-mobil);  /* La teva mida de referÃ¨ncia */
+    width: 97%;
+    margin: 5px auto;  /* Centrat a la pantalla */
+    position: relative; /* "Ã€ncora" perquÃ¨ el logo i el text sÃ piguen on sÃ³n */
+    height: 125px;      /* AlÃ§ada per encabir-ho tot */
+    outline: 0px solid red !important;  /*xxx*/
 }
 
-/* ─── 3. NAVBAR ───────────────────────────────────────────── */
-.navbar {
-    background-color: transparent;
-    padding: 15px calc((100% - var(--amplada-max)) / 2 + 20px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    transition: background-color 0.3s ease;
-}
+    /*__________________________Logo__________________________*/
 
-.navbar.scrolled {
-    background-color: rgba(44, 62, 53, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 15px calc((100% - var(--amplada-max)) / 2 + 20px);
-}
+            .contenidor-logo {   /*   Contenidor   */
 
-.navbar-logo {
-    color: var(--color-blanc);
-    font-family: var(--font-titol);
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+                position: absolute; /* Es colÂ·loca respecte a .capcalera-principal */
+                top: 10px; 
+                left: 0;
+                width: 110px;
+                outline: 0px solid pink !important;
+            }
 
-.navbar-logo img {
-    height: 60px;
-    width: auto;
-}
+            .logo {
+                max-width: 110px;
+                width: 99%;
+                user-select: none;    /* Evita que el client seleccioni la imatge blava */
+                pointer-events: auto; /* Evita que el logo reaccioni a clics */
+                -webkit-touch-callout: none; /* BLOQUEJA el menÃº de "Guardar imatge" del mÃ²bil */
+                outline: 0px solid green !important;
+            }
 
-.navbar-menu {
-    display: none;
-    gap: 20px;
-    list-style: none;
-}
+    /*________________________Text CapÃ§alera_________________ */
 
-.navbar-hamburguesa {
-    background: none;
+            .text-capcalera {   /*   Contenidor   */
+                width: 240px;
+                position: absolute;
+                top: 60px;    /* DistÃ ncia des de dalt del pare */
+                left: 150px;   /* DistÃ ncia des de l'esquerra del pare */
+                outline: 0px solid pink !important;
+            } 
+
+            .text-capcalera p {     /*   TEXT (p) */
+                font-size: 14px;
+                color: #111;
+                text-align: center;
+                margin: 0;
+                outline: 0px solid blue !important;
+            }
+
+            /* El span que hem creat per netejar l'style de l'HTML */     /*2ona linea del text*/
+            .subtitol-capcalera {
+                display: block;
+                text-align: center;
+            }
+
+/*///////////////////////////////////////   SEPARADORS HR    ////////////////////////////////*/
+
+.separador-hr {
     border: none;
+    border-top: 1px solid var(--color-hr); /* Color taronja CadÃ­ */
+    max-width: var(--amplada-mobil);
+    width: 90%;
+    margin: 5px auto;
+    outline: 0px solid pink !important;
+}
+
+
+/*//////////////////////   BLOC 3 IMATGES (Index)    ////////////////////////////////////////////*/
+
+    .bloc-imatges {    /*   Contenidor   */
+        max-width:var(--amplada-mobil);
+        width: 90%;
+        margin: 10px auto;
+        height: 200px; 
+        display: flex; 
+        gap: 8px; 
+        align-items: stretch; /* <--- Afegeix aixÃ²      Iguala derta i esquerra*/
+        outline: 0px solid red !important;
+    /* background-color: #f5f5f5; */
+    }
+
+/*______________________COLUMNA ESQUERRA (Contenidor de les 2 petites)_____ */
+                .columna-esquerra {
+                    display: flex; 
+                    flex-direction: column; 
+                    /*justify-content: space-between;*/
+                    width: 42%;
+                    gap: 8px; 
+                    height: 100%; /* Assegura que la columna ocupa tot el pare */
+                    outline: 0px solid blue !important;
+                }                                                                                               
+
+/*____________________ IMATGE GRAN A LA DRETA _______Contenidor...____*/
+                .imatge-dreta {
+                    display: flex; 
+                    width: 58%;
+                    height: 100%; 
+                    margin: 0px 0px;
+                    outline: 0px solid red !important;
+                }
+
+/*______________________Bloc inferior (Postres i  Mapa)_________Contenidor...____________ */
+                .bloc-imatge-inferior {
+                    max-width:var(--amplada-mobil);
+                    width: 90%;
+                    margin: 10px auto; /* Donem espai (10px) perquÃ¨ no s'enganxi a dalt */
+                    display: block;
+                    outline: 0px solid brown !important;
+                }
+
+                /* Forcem que la caixa de Postres sigui igual que el conjunt de dalt */
+                .item-horizontal {
+                    height: 96px !important; 
+                    margin-bottom:10px;
+                }
+
+
+
+
+/*???????????????????????????????????????????????????*/
+                .item-horizontal img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+/*????????????????????????????????????????????????????????*/
+
+
+/*/////////////////////////   ESTIL DE LES IMATGES   (Index)   ///////////////////*/
+
+.imatge-categoria {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+    outline: 0px solid orangered !important;
+}
+
+/*___________________________________ Asegurem que els enllaÃ§os siguin el contenidor dels textos _______*/
+.enllac-imatge-categoria {
+    position: relative; /* AixÃ² Ã©s l'Ã ncora pels textos */
+    display: block;
+    width: 100%;
+    box-shadow: -1px 2px 8px rgba(0, 0, 0, 0.8);
+    /*background-color: #f5f5f5;*/
+    padding: 0px;
+    box-sizing: border-box; /* Molt important per les mides! */
+}
+
+/*___________________________________________ EFECTE VISUAL AL HOVER________________________________ */
+.enllac-imatge-categoria:hover img {
+    opacity: 0.85; 
+    transition: opacity 0.2s ease-in-out;
+}
+                /* 2. Apliquem els 96px NOMÃ‰S a les fotos de la columna esquerra */
+            .columna-esquerra .enllac-imatge-categoria {
+                height: 96px;
+            }
+
+            /* 3. Apliquem el 100% NOMÃ‰S a la foto de la dreta */
+            .imatge-dreta .enllac-imatge-categoria {
+                height: 100%;
+            }
+
+/* ________________________________ Els textos flotants (Lletres blanques amb ombra, sense marc)_____________ */
+.etiqueta-categoria {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
     color: white;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.navbar-menu.obert {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: rgba(44, 62, 53, 0.95);
-    padding: 20px;
-    gap: 16px;
-    z-index: 99;
-    align-items: flex-end;
-}
-
-.navbar-menu a {
-    color: var(--color-blanc);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.navbar-menu a:hover {
-    color: var(--color-accent);
-    text-decoration: none;
-}
-
-/* ─── 4. HERO ─────────────────────────────────────────────── */
-.hero {
-    position: relative;
-     margin-top: 0px;
-     /*padding-top: 70px;*/
-     margin-inline: auto;                     /*xxx*/
-     width: 100%;                              /*xxx*/
-    height: 100vh;
-    min-height: 300px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    outline: 0px solid red !important;      /*xxx*/
-}
-
-.hero-imatge {
-    position: absolute;
-    top: 0; left: 0;
-    /*padding: 40px 60px;                     /*xxx*/
-    width: 100%; height: 100%;
-    object-fit: cover;
-    z-index: 0;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.45);
-    z-index: 1;
-}
-
-.hero-contingut {
-    position: relative;
-    z-index: 2;
-    padding: 20px;
-    color: var(--color-blanc);
-}
-
-.hero-titol {
-    font-family: var(--font-titol);
-    font-weight: 800;
-    font-size:3rem;
-    letter-spacing: 3px;
-    /*text-transform: uppercase;*/
-    margin-bottom: 10px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
-
-.hero-slogan {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 25px;
-    font-style: italic;
-}
-
-.hero-boto {
-    display: inline-block;
-    background: var(--color-accent);
-    color: var(--color-blanc);
-    padding: 12px 30px;
-    border-radius: var(--radi);
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
-    letter-spacing: 2px;
     text-transform: uppercase;
-    transition: background 0.2s;
+    text-shadow: 1px 1px 3px rgba(255,255,0,1); /* Ombra perquÃ¨ es llegeixi bÃ© */
+    pointer-events: none;
+    z-index: 10;
 }
 
-.hero-boto:hover {
-    background: var(--color-principal);
-    text-decoration: none;
+
+/*////////////////////////////////   BLOC ENLLAÃ‡OS   //////////////////////////*/
+
+.bloc-enllacos {
+    max-width: var(--amplada-mobil);
+    width: 90%;
+    margin: 20px auto 10px auto; 
+    text-align: center;
+    outline: 0px solid pink !important; 
 }
 
-/* ─── 5. SECCIONS ─────────────────────────────────────────── */
-.seccio {
-          /*max-width: 800px;*/
-   margin: 0 auto;
-   padding: 40px 50px;
-   scroll-margin-top: 70px;
+.bloc-enllacos p {
+    margin: 5px 0;
+    display: inline-block; 
+    padding: 0 10px;
 }
 
-.seccio-alt {
-    background-color: transparent;
+.bloc-enllacos a {
+    color: var(--color-link); 
+    text-decoration: none; 
+    font-size: 14px;
 }
 
-.seccio-titol {
-    font-family: var(--font-titol);
-    font-size: 1.5rem;
-    color: var(--color-principal);
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--color-accent);
+.bloc-enllacos a:hover {
+    text-decoration: underline; 
 }
 
-.seccio-text {
-    font-size: 15px;
-    color: var(--color-text-suau);
-    line-height: 1.8;
-    margin-bottom: 15px;
+/*__________________________ Estil per les icones petites de les Apps _______________________*/
+            .icona-app {
+                width: 24px;            /* Mida de la icona (pots posar 20px o 30px segons gust) */
+                height: auto;           /* MantÃ© la proporciÃ³ */
+                vertical-align: middle; /* Alinear verticalment amb el text del costat */
+                margin-right: 8px;      /* Un petit espai de separaciÃ³ entre la icona i el text */
+                display: inline-block;  /* Assegura que es comporti bÃ© dins la lÃ­nia */
+            }
+
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////-------------------- */
+/* ------------------------------- ESTILS PÃ€GINES INTERIORS (GALERIA I FITXA) ------------------------------------------------------ */
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////-------------------- */
+
+
+
+/*//////////////////////////////   PÃ€GINES DE CATEGORIA  //////////////////////////////////////////////////////////// */
+
+.galeria-productes {        /* Contenidor sencer de la llista  */
+    max-width: var(--amplada-mobil);
+    width: 95%;
+    margin: 40px auto;
+    padding: 0px;
+    outline: 0px solid red !important;
 }
 
-/* ─── 6. BLOCS DE MENÚ ───────────────────────────────────── */
-.menus-grid {
-    display: grid;
-    gap: 20px;
-}
-.menu-bloc {
-    margin-bottom: 24px;
-    cursor: pointer;
-}
+/*_________________________TÃ­tol Categoria (Dinamitzat)____________________________*/
 
-.menu-bloc a {
-    color: inherit;
-    text-decoration: none;
-    display: block; outline: 0px solid red !important;
-}
+            #titol-categoria, #contingut-fitxa h1 {
+                visibility: visible !important;
+                opacity: 1 !important;
+                margin-top: 7px;
+                margin-bottom: 5px;
+                font-size: 2rem;       /* He dejado tus 2rem del bloque dinÃ¡mico */
+                font-weight: 350;
+                color: var(--text-noms);
+                letter-spacing: 1px;
+                text-align: center;
+                width: 100%;
+                outline: 0px solid cyan !important;
+            }
 
-.menu-bloc a:hover {
-    text-decoration: none;
-}
+            #titol-categoria::after, #contingut-fitxa h1::after {    /* La lÃ­nia decorativa que es crea sola */
+                content: "";
+                display: block;
+                width: 80px;
+                height: 1px;
+                background: var(--text-noms);
+                margin: 15px auto;
+            }
 
-.menu-bloc-imatge img {
+/*______________________Bloc item sencer________________________________*/
+
+            .bloc-galeria-item {        /* Contenidor de cada fila de plat (Flex)  */
+                display: flex;
+                align-items: center;
+                width: 95%;
+                margin: 0 auto 15px auto; 
+                text-decoration: none;
+                color: #333;
+                background-color: rgba(231, 231, 231, 0.7);
+                box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                border: 1px solid #eee;
+                padding: 0;
+                overflow: hidden;
+                outline: 0px solid pink !important;
+            }
+
+    /*__________________________Imatge Miniatura__________________________*/
+
+                    .bloc-galeria-item img {
+                        width: 90px;
+                        height: 90px;
+                        min-width: 90px;
+                        object-fit: cover;
+                        object-position: center;
+                        border-radius: 8px;
+                        margin-right: 15px;
+                        margin-top: 5px; 
+                        margin-bottom: 5px;
+                        margin-left: 5px;
+                        outline: 0px solid chartreuse !important;
+                    }
+
+ /*__________________________Textos del Plat__________________________*/
+
+                        .detalls-producte {     /* Contenidor dret dels textos  */
+                            flex-grow: 1;
+                            padding: 10px;
+                            text-align: left;
+                        }
+
+                                .titol-item {           /* Nom del plat  */
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                    color: var(--text-noms);
+                                    margin: 5px 0 0 0;
+                                    outline: 0px solid black !important;
+                                }
+
+                                .detalls-producte p {   /* DescripciÃ³ curta  */
+                                    font-size: 14px;
+                                    color: #666;
+                                    margin: 2px 0;
+                                    outline: 0px solid orange !important;
+                                }
+
+                                .preu {                 /* Preu (â‚¬)  */
+                                    display: block; 
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                    color: #191970;
+                                    outline: 0px solid cyan !important;
+                                }
+
+
+/*/////////////////////////      MODAL (Fitxa del Producte)  ////////////////////////////////////////////////////// */
+
+#modal-detall {             /* Fons fosc (Overlay)  */
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contingut {          /* Caixa blanca central  */
+    background-color: #fff;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.tancar-modal {             /* BotÃ³ de tancar (X)  */
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 0 0 5px #000;
+    z-index: 10;
+}
+
+.modal-contingut img {      /* Imatge gran del modal  */
+    width: 100%;
+    height: 250px;
     object-fit: cover;
 }
 
-.menu-bloc-text {
-    padding: 12px 0;
+
+/*/////////////////////////  SPINNER I CÃ€RREGA  ////////////////////////////////////////////////////////////// */
+
+#titol-categoria.loading::after, 
+#contingut-fitxa h1.loading::after {    /* L'anell giratori  */
+    content: "" !important;
+    display: block !important;
+    width: 34px;
+    height: 34px;
+    margin: 20px auto 0;
+    border-radius: 50%;
+    background: conic-gradient(#4285f4, #ea4335, #fbbc05, #ffffff, #34a853, #4285f4);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 0);
+    mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 0);
+    animation: girar 1s linear infinite;
+    visibility: visible !important;
 }
 
-.menu-bloc-text h3 {
-    font-family: var(--font-titol);
-    font-size: 1.1rem;
-    color: var(--color-principal);
-    margin-bottom: 6px;
-}
-
-.menu-bloc-text p {
-    font-size: 14px;
-    color: var(--color-text-suau);
-    line-height: 1.6;
-}
-
-/* ─── 7. SEPARADOR ────────────────────────────────────────── */
-.separador {
-    border: none;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    margin: 0;
-}
-
-/* ─── 7. FOOTER ───────────────────────────────────────────── */
-.footer {
-    background-color: rgba(44, 62, 53, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: rgba(255,255,255,0.75);
-    padding: 40px 20px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 2;
-}
-
-.footer-nom {
-    font-family: var(--font-titol);
-    font-size: 18px;
-    color: var(--color-blanc);
-    margin-bottom: 10px;
-}
-
-.footer a {
-    color: var(--color-accent);
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
-
-.footer-poweredby {
-    margin-top: 30px;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-}
-
-.footer-poweredby a {
-    color: var(--color-accent);
-}
-
-#visites:not(:empty)::before {
-    content: " · ";
-}
-
-#visites {
-    font-size: 0.75rem;
-    opacity: 0.5;
-}
-
-
-/* ─── SPINNER ─────────────────────────────────────── */
-@keyframes gir {
+@keyframes girar {          /* AnimaciÃ³ de rotaciÃ³  */
     to { transform: rotate(360deg); }
 }
 
-/* ── TABLET (a partir de 768px) ── */
-@media (min-width: 768px) {
-.seccio {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 40px 50px;
-    }
+.esperant-validacio {       /* Estat abans de carregar  */
+    visibility: hidden !important;
+    opacity: 0;
 }
 
-/* ── PC (a partir de 1024px) ── */
-@media (min-width: 1024px) {
-    .navbar-logo img {
-        height: 80px;
-        width: auto;
-    }
+.revelat-final {            /* Estat quan les dades ja estan llestes  */
+    visibility: visible !important;
+    opacity: 1;
+    transition: opacity 0.4s ease-in;
+}
 
-    .navbar-menu {
-        display: flex;
-        gap: 30px;
-        list-style: none;
-    }
 
-    .navbar-menu a {
-    font-size: 18px; /* Modifica aquest número (18, 19, 20...) fins que el vegis al teu gust */
-    }
+/*/////////////////////////  DECORACIÃ“ (Icona Ren/Nadal)  //////////////////////////////////////////////////// */
 
-    .navbar-hamburguesa {
-            display: none;
-    }
+body::after {
+    content: "";
+    position: fixed;
+    top: 0%;
+    left: calc(50% + (var(--amplada-mobil) / 2)); 
+    transform: translateX(-100%);
+    width: 300px;
+    height: 300px;
+    background-image: url('..Icon/');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right top;
+    z-index: 9999;
+    pointer-events: none;
+}
 
-    .hero-titol {
-    font-size:8rem;
-    }
 
-    .seccio {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 40px 50px;
-    }
+/*/////////////////////////  ESTILS MODO EDICIO  ////////////////////////////////////////////////////////////// */
 
-    .menu-bloc-imatge img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    }
+body.admin-mode-active {    /* Marc d'avÃ­s mode EDICIO  */
+    border: 5px solid rgb(246, 188, 81) !important; 
+}
+
+.item-ocult {               /* Plats amb Visible: False  */
+    opacity: 0.5; 
+    filter: grayscale(100%); 
+    border: 2px dashed gray; 
+}
+
+#admin-controls, #btn-guardar-admin {   /* Controles ocults per defecte  */
+    display: none; 
+}
+
+
+/*///////////////////////////////////  IPhone   ////////////////////////////////////////////////////*/
+
+/* Eliminar menÃºs de guardado de imagen en iPhone */
+.logo {
+    -webkit-touch-callout: none!important; /* Desactiva el menÃº 'Guardar imagen' */
+    -webkit-user-select: none!important;    /* Evita selecciÃ³n de imagen */
+    user-select: none!important;
+    -webkit-tap-highlight-color: transparent; /* Elimina el recuadro gris al tocar */
+}
+
+/* Forzar que el iPhone reconozca los enlaces al primer toque */
+.contenidor-categoria,.boto-pdf,.logo {
+    cursor: pointer!important; /* Indica a Safari que es un elemento interactivo */
+}
+
+
+/* 1. REGLA GENERAL: Escondemos todo lo que sea del admin */
+.controles-admin {
+    display: none !important;
+}
+
+/* 2. EXCEPCIÃ“N: Si el body tiene la etiqueta de admin, lo mostramos */
+.admin-mode-active .controles-admin {
+    display: flex !important;
 }

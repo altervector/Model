@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="ca">
-    
 <head>
-
-    <title>Olé y Ají</title>
-
-    <meta name="description" content="Consulta la carta i els plats de xxx Restaurant de forma digital i actualitzada.">
-    <meta name="robots" content="index, follow">
-
-    <link rel="icon" type="image/png" href="Icon/logoOAtrans.png">
-    <link rel="apple-touch-icon" href="logoOAtrans.png">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta property="og:title" content="Restaurant | Carta Digital">
-    <meta property="og:description" content="Consulta la nostra carta actualitzada directament des del mòbil.">
-    <meta property="og:image" content="logoOAtrans.png">
-    <meta property="og:type" content="website">
-    
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>404</title>
 
     <style>
-       /* body { opacity: 0; transition: opacity 0.5s ease-in; }*/
-       body { opacity: 1; }
+        body { 
+            opacity: 1; 
+            transition: opacity 0.5s ease-in; 
+            margin: 0;
+            background-color: #000000; /* Pantalla completa sempre negra */
+        }
+
+        .bg {
+            max-width: 100vw;
+            width: 100%;
+            background-image: url('images/404.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 170%;
+            min-height: 100vh;
+            margin: 0 auto; /* Centra el bloc al PC */
+        }
+
+        @media (min-width: 1024px) {
+            .bg {
+                max-width: 1024px;
+                background-size: auto;
+            }
+            
+        }
     </style>
 
-    <script src="config.js"></script>
-    <script>
-        window.MODULS = ["api.js", "menulogic.js", "main.js"];
-    </script>
-    <script src="loader.js"></script>
+
 </head>
+
 <body>
 
-    <div id="navbar"></div>
-    <div id="hero"></div>
-    <div id="seccions" style="margin:  4px ;  outline: 0px solid orangered ; z-index: 9999;"></div>
-    <div id="footer"></div>
+<div class="bg"></div>
 
-    <!--script data-goatcounter="https://altervector.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script-->
-        
 </body>
+
 </html>

@@ -27,29 +27,24 @@
         document.getElementById('modal-detall').style.display = 'none';
     }
 
-    window.mostrarAvis = function(missatge, tipus = 'ok', recarregar = false) {
-        const colorMap = { ok: '#28a745', error: '#dc3545', info: '#191970' };
-        const overlay = document.createElement('div');
-        overlay.style = `position:fixed; top:0; left:0; width:100%; height:100%; 
-            background:rgba(0,0,0,0.5); z-index:99999; 
-            display:flex; align-items:center; justify-content:center;`;
-        overlay.innerHTML = `
-            <div style="background:white; border-radius:12px; padding:30px 40px; 
-                max-width:320px; width:90%; text-align:center; 
-                box-shadow:0 8px 30px rgba(0,0,0,0.3); font-family:sans-serif;">
-                <p style="font-size:16px; color:#333; margin:0 0 20px 0;">${missatge}</p>
-                <button id="btn-avis-ok"
-                    style="background:${colorMap[tipus]}; color:white; border:none; 
-                    padding:10px 30px; border-radius:8px; font-size:15px; 
-                    font-weight:bold; cursor:pointer;">OK</button>
-            </div>`;
-        document.body.appendChild(overlay);
-        document.getElementById('btn-avis-ok').onclick = () => {
-            overlay.remove();
-            if (recarregar) location.reload();
+        window.mostrarAvis = function(missatge, tipus = 'ok') {
+            const colors = { ok: '#28a745', error: '#dc3545', info: '#191970' };
+            const overlay = document.createElement('div');
+            overlay.style = `position:fixed; top:0; left:0; width:100%; height:100%; 
+                background:rgba(0,0,0,0.5); z-index:99999; 
+                display:flex; align-items:center; justify-content:center;`;
+            overlay.innerHTML = `
+                <div style="background:white; border-radius:12px; padding:30px 40px; 
+                    max-width:320px; width:90%; text-align:center; 
+                    box-shadow:0 8px 30px rgba(0,0,0,0.3); font-family:sans-serif;">
+                    <p style="font-size:16px; color:#333; margin:0 0 20px 0;">${missatge}</p>
+                    <button onclick="this.closest('div').parentElement.remove()" 
+                        style="background:${colors[tipus]}; color:white; border:none; 
+                        padding:10px 30px; border-radius:8px; font-size:15px; 
+                        font-weight:bold; cursor:pointer;">OK</button>
+                </div>`;
+            document.body.appendChild(overlay);
         };
-    };
-
 
     /*/////////////////////////  2. OBRIR MODAL (CLIENT I ADMIN)  ///////// */
 
@@ -69,7 +64,7 @@
             modal.style.backgroundColor = "var(--bg-modaledit)";
             contingut.innerHTML = `
                 <div style="position:relative;" id="container-foto-admin">
-                    <img id="preview-foto" src="${foto}" style="width:100%; height:200px; object-fit:contain; border-radius:10px 10px 0 0; background:#000;">
+                    <img id="preview-foto" src="${foto}" style="width:100%; height:200px; object-fit:cover; border-radius:10px 10px 0 0;">
                     <label id="btn-foto-accion" for="upload-foto" style="position:absolute; bottom:10px; right:10px; background:#191970; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer; font-size:12px; font-family:sans-serif;">
                         📷 CANVIAR FOTO
                     </label>
@@ -118,7 +113,7 @@
     /*/////////////////////////  3. MODAL PLAT NOU (ADMIN)  ///////// */
 
     window.obrirModalNuevo = function() {
-        const fotoDefault = `${CONFIG.REPO_URL}images/Default.png`;
+        const fotoDefault = `${CONFIG.BASE_URL}images/Default.png`;
         const urlParams = new URLSearchParams(window.location.search);
         const categoriaActual = urlParams.get('Categoria') || '';
         const contingut = document.getElementById('contingut-dinamic-modal');
@@ -129,7 +124,7 @@
         modal.style.backgroundColor = "rgba(40, 167, 69, 0.8)";
         contingut.innerHTML = `
             <div style="position:relative;" id="container-foto-admin">
-                <img id="preview-foto" src="${fotoDefault}" style="width:100%; height:200px; object-fit:contain; border-radius:10px 10px 0 0; background:#000;">
+                <img id="preview-foto" src="${fotoDefault}" style="width:100%; height:200px; object-fit:cover; border-radius:10px 10px 0 0;">
                 <label id="btn-foto-accion" for="upload-foto" style="position:absolute; bottom:10px; right:10px; background:#191970; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer; font-size:12px;">
                     📷 SELECCIONAR FOTO
                 </label>
@@ -230,6 +225,9 @@
             formData.append('file', blob, `${Date.now()}.jpg`);
             formData.append('upload_preset', 'ml_default');
 
+            const nomNet = nomOriginal.split('.')[0].replace(/\s+/g, '_') + "_" + Date.now();
+            /*formData.append('public_id', nomNet);*/
+
             const resCloudy = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.CLOUDI_NAME}/image/upload`, {
                 method: 'POST',
                 body: formData
@@ -240,47 +238,38 @@
             if (dataCloudy.secure_url) {
                 const nomFinal = dataCloudy.public_id + "." + dataCloudy.format;
 
-                // Els dos casos (plat existent i plat nou) fan el mateix:
-                // Guarden el nom de la foto i es queden al modal sense recarregar.
-                // La foto s'enviarà a Airtable quan es polsi GUARDAR.
-
-                // Guardem el nom al camp ocult (pot ser el de nou o el d'existent)
-                let campFoto = document.getElementById('nombre-foto-nueva');
-                if (!campFoto) {
-                    // Plat existent — creem el camp ocult si no existeix
-                    campFoto = document.createElement('input');
-                    campFoto.type = 'hidden';
-                    campFoto.id = 'nombre-foto-nueva';
-                    document.body.appendChild(campFoto);
+                if (idAirtable && idAirtable !== "null") {
+                    btnAccion.innerHTML = "📝 ACTUALITZANT...";
+                    await fetch(CONFIG.BASE_WORKER, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id: idAirtable, Foto: nomFinal })
+                    });
+                    btnAccion.innerHTML = "✅ Imatge OK";
+                    btnAccion.style.background = "#28a745";
+                    const btnReintentar = document.getElementById('btn-reintentar');
+                    if (btnReintentar) btnReintentar.remove();
+                    mostrarAvis("✅ Imatge actualitzada!")
+                } else {
+                    document.getElementById('nombre-foto-nueva').value = nomFinal;
+                    const btnFinal = document.getElementById('btn-crear-final');
+                    if (btnFinal) {
+                        btnFinal.disabled = false;
+                        btnFinal.style.background = "#28a745";
+                        btnFinal.style.cursor = "pointer";
+                        btnFinal.style.opacity = "1";
+                    }
+                    document.getElementById('aviso-foto').style.display = 'none';
+                    if (document.getElementById('btn-reintentar')) document.getElementById('btn-reintentar').remove();
+                    btnAccion.innerHTML = "✅ FOTO GUARDADA";
+                    btnAccion.style.background = "#28a745";
                 }
-                campFoto.value = nomFinal;
-
-                // Actualitzem botons i etiqueta
-                const btnReintentar = document.getElementById('btn-reintentar');
-                if (btnReintentar) btnReintentar.remove();
-                btnAccion.innerHTML = "✅ FOTO GUARDADA";
-                btnAccion.style.background = "#28a745";
-                btnAccion.style.pointerEvents = "none";
-
-                // Habilitem el boto CREAR PLATO si existeix (plat nou)
-                const btnFinal = document.getElementById('btn-crear-final');
-                if (btnFinal) {
-                    btnFinal.disabled = false;
-                    btnFinal.style.background = "#28a745";
-                    btnFinal.style.cursor = "pointer";
-                    btnFinal.style.opacity = "1";
-                }
-
-                // Amaguem l'avís de foto obligatòria si existeix (plat nou)
-                const avisofoto = document.getElementById('aviso-foto');
-                if (avisofoto) avisofoto.style.display = 'none';
             }
         } catch (error) {
             console.error("Error:", error);
             btnAccion.innerHTML = "❌ ERROR";
             btnAccion.style.pointerEvents = "auto";
             btnAccion.style.background = "#dc3545";
-            mostrarAvis("❌ Error pujant la imatge.", 'error');
         }
     };
 
@@ -299,9 +288,10 @@
             "Categoria": [document.getElementById('edit-categoria').value]
         };
 
-        // Tant per a plat nou com per a plat existent, enviem la foto si s'ha canviat
-        const campFoto = document.getElementById('nombre-foto-nueva');
-        if (campFoto && campFoto.value) dades["Foto"] = campFoto.value;
+        if (!idReal) {
+            const fotoNova = document.getElementById('nombre-foto-nueva').value;
+            if (fotoNova) dades["Foto"] = fotoNova;
+        }
 
         if (!dades.Nom) { mostrarAvis("⚠️ El nom és obligatori", 'info'); return; }
 
@@ -312,10 +302,11 @@
         })
         .then(response => {
             if (response.ok) {
+                mostrarAvis(idReal ? "✅ Guardat!" : "✅ Nou plat creat!")
                 tancarModal();
-                mostrarAvis(idReal ? "✅ Guardat correctament!" : "✅ Nou plat creat!", 'ok', true);
+                location.reload();
             } else {
-                mostrarAvis("❌ Error en l'operació.", 'error');
+                mostrarAvis("❌ Error en l'operació.", 'error')
             }
         })
         .catch(error => console.error('Error:', error));

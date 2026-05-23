@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=400px, initial-scale=1.0">
+    <title>Olé y Ají</title>
+
+    <style>
+        body { opacity: 0; transition: opacity 0.5s ease-in; }
+    </style>
+
+    <script>                
+        (function() {
+            const now = new Date().getTime();
+            const rutaConfig = "https://altervector.github.io/oleyaji/config.js";
+            document.write('<script src="' + rutaConfig + '?v=' + now + '"><\/script>');
+        })();
+    </script>
+
+    <script>
+        (function() {
+            if (typeof CONFIG === 'undefined') return;
+
+            // 1. SEGURIDAD INMEDIATA
+            const esSitioSeguro = CONFIG.SITIOS_SEGUROS.some(s => window.location.hostname.includes(s));
+            if (!esSitioSeguro) {
+                document.documentElement.innerHTML = ""; 
+                window.location.href = CONFIG.URL_OFICIAL;
+                return;
+            }
+
+            const now = new Date().getTime();
+            const repoBase = CONFIG.BASE_URL;
+
+            // 2. CARGA DE ESTILOS
+            const css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = repoBase + "estils.css?v=" + now;
+            document.head.appendChild(css);
+
+            // 3. CARGA DE LOGICA EN ORDEN
+            const scripts = ["api.js", "capcalera.js", "enllacos.js", "indexlogic.js"];
+            scripts.forEach(file => {
+                const s = document.createElement("script");
+                s.src = repoBase + file + "?v=" + now;
+                s.async = false;
+                document.head.appendChild(s);
+            });
+
+            // 4. QUITAR VELO (Corregido: usamos opacity 1)
+            window.addEventListener('load', () => {
+                document.body.style.opacity = "1";
+            });
+        })();
+    </script>
+</head>
+<body>
+    <div id="capcalera-dinamica"></div>
+    <div id="contingut-index"></div>
+    <hr class="separador-hr">
+    <hr class="separador-hr">
+    <div id="bloc-enllacos-dinamic"></div>
+</body>
+</html>
