@@ -535,3 +535,14 @@ body.admin-mode-active {    /* Marc d'avÃ­s mode EDICIO  */
 .admin-mode-active .controles-admin {
     display: flex !important;
 }
+
+/* ── PC (a partir de 1024px) ── */
+@media (min-width: 1024px) {
+    .bloc-imatges {    /*   Contenidor   */
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 50px;
+        outline: 2px solid red !important;
+    /* background-color: #f5f5f5; */
+    }
+}
